@@ -1,0 +1,578 @@
+# Copyright (C) 2019 Sabri Taieb
+# This file is distributed under the same license as the Woomotiv plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Woomotiv 2.5.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woomotiv\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2019-08-15T12:10:31+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.2.0\n"
+"X-Domain: woomotiv\n"
+
+#. Plugin Name of the plugin
+msgid "Woomotiv"
+msgstr ""
+
+#. Description of the plugin
+msgid "Laverage social proof to increase truct, traffic and sales."
+msgstr ""
+
+#. Author of the plugin
+msgid "Sabri Taieb"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://delabon.com"
+msgstr ""
+
+#: lib/class-popup.php:117
+#: lib/class-popup-review.php:51
+msgid "ago"
+msgstr ""
+
+#: lib/functions.php:12
+msgid "Upgrade"
+msgstr ""
+
+#: lib/functions.php:25
+msgid "Please upgrade to use this feature. Upgrading helps me complete developing Woomotiv."
+msgstr ""
+
+#: lib/class-backend.php:47
+msgid "Options Saved Successfuly"
+msgstr ""
+
+#: lib/class-backend.php:69
+msgid "General"
+msgstr ""
+
+#: lib/class-backend.php:75
+msgid "Content Template"
+msgstr ""
+
+#: lib/class-backend.php:81
+#: views/tabs/report.php:185
+msgid "Custom Popups"
+msgstr ""
+
+#: lib/class-backend.php:81
+msgid "new"
+msgstr ""
+
+#: lib/class-backend.php:87
+msgid "Advanced"
+msgstr ""
+
+#: lib/class-backend.php:93
+msgid "Filters"
+msgstr ""
+
+#: lib/class-backend.php:99
+msgid "Appearance"
+msgstr ""
+
+#: lib/class-backend.php:105
+#: views/tabs/report.php:20
+#: views/tabs/report.php:123
+msgid "Report"
+msgstr ""
+
+#: lib/class-backend.php:111
+msgid "Discover"
+msgstr ""
+
+#: lib/class-backend.php:117
+msgid "Change Log"
+msgstr ""
+
+#: lib/class-backend.php:169
+msgid "Are you sure ?"
+msgstr ""
+
+#: lib/hooks.php:39
+msgid "Woomotiv needs Woocommerce to be installed."
+msgstr ""
+
+#: lib/hooks.php:61
+msgid "Would you mind give it 5-stars review to help spread the word? And to keep me updating it & adding more features to it!"
+msgstr ""
+
+#: lib/hooks.php:63
+msgid "Would you want to get awesome features?"
+msgstr ""
+
+#: lib/hooks.php:65
+msgid "Review popups (Very powerful)."
+msgstr ""
+
+#: lib/hooks.php:67
+msgid "Custom popups."
+msgstr ""
+
+#: lib/hooks.php:69
+msgid "Display orders popups which still processing (Very powerful)."
+msgstr ""
+
+#: lib/hooks.php:71
+msgid "And more."
+msgstr ""
+
+#: views/tabs/content-template.php:9
+msgid "Sale Content Template"
+msgstr ""
+
+#: views/tabs/content-template.php:10
+#: views/tabs/content-template.php:23
+msgid "Available Template Tags"
+msgstr ""
+
+#: views/tabs/content-template.php:22
+msgid "Review Content Template"
+msgstr ""
+
+#: views/tabs/report.php:21
+msgid "Not enough data !"
+msgstr ""
+
+#: views/tabs/report.php:28
+msgid "Select day"
+msgstr ""
+
+#: views/tabs/report.php:30
+msgid "Year"
+msgstr ""
+
+#: views/tabs/report.php:48
+msgid "Month"
+msgstr ""
+
+#: views/tabs/report.php:63
+msgid "Day"
+msgstr ""
+
+#: views/tabs/report.php:136
+msgid "Select Month"
+msgstr ""
+
+#: views/tabs/report.php:137
+msgid "January"
+msgstr ""
+
+#: views/tabs/report.php:138
+msgid "February"
+msgstr ""
+
+#: views/tabs/report.php:139
+msgid "March"
+msgstr ""
+
+#: views/tabs/report.php:140
+msgid "April"
+msgstr ""
+
+#: views/tabs/report.php:141
+msgid "May"
+msgstr ""
+
+#: views/tabs/report.php:142
+msgid "June"
+msgstr ""
+
+#: views/tabs/report.php:143
+msgid "July"
+msgstr ""
+
+#: views/tabs/report.php:144
+msgid "August"
+msgstr ""
+
+#: views/tabs/report.php:145
+msgid "September"
+msgstr ""
+
+#: views/tabs/report.php:146
+msgid "October"
+msgstr ""
+
+#: views/tabs/report.php:147
+msgid "November"
+msgstr ""
+
+#: views/tabs/report.php:148
+msgid "December"
+msgstr ""
+
+#: views/tabs/report.php:162
+msgid "Products"
+msgstr ""
+
+#: views/tabs/report.php:168
+#: views/tabs/report.php:191
+msgid "ID"
+msgstr ""
+
+#: views/tabs/report.php:169
+#: views/tabs/report.php:192
+msgid "Thumbnail"
+msgstr ""
+
+#: views/tabs/report.php:170
+msgid "Product"
+msgstr ""
+
+#: views/tabs/report.php:171
+#: views/tabs/report.php:194
+msgid "Clicks"
+msgstr ""
+
+#: views/tabs/report.php:193
+msgid "Content / Url"
+msgstr ""
+
+#: views/tabs/custom-popups.php:80
+#: views/custom-popup/add.php:53
+#: views/custom-popup/edit.php:55
+msgid "Expiry Date"
+msgstr ""
+
+#: views/tabs/custom-popups.php:82
+msgid "Edit"
+msgstr ""
+
+#: views/tabs/custom-popups.php:84
+msgid "Delete"
+msgstr ""
+
+#: views/tabs/custom-popups.php:95
+msgid "Add Custom Popup"
+msgstr ""
+
+#: views/tabs/filters.php:8
+msgid "Show / Hide On All Pages"
+msgstr ""
+
+#: views/tabs/filters.php:9
+msgid "Add the pages exluded below."
+msgstr ""
+
+#: views/tabs/filters.php:13
+msgid "Show"
+msgstr ""
+
+#: views/tabs/filters.php:14
+#: views/tabs/general.php:82
+#: views/tabs/general.php:89
+msgid "Hide"
+msgstr ""
+
+#: views/tabs/filters.php:19
+msgid "Pages Excluded"
+msgstr ""
+
+#: views/tabs/filters.php:20
+msgid "Add the excluded pages URL's here. ex:"
+msgstr ""
+
+#: views/tabs/filters.php:27
+msgid "Hide on All Articles"
+msgstr ""
+
+#: views/tabs/filters.php:30
+#: views/tabs/advanced.php:11
+#: views/tabs/advanced.php:19
+#: views/tabs/general.php:22
+#: views/tabs/general.php:30
+#: views/tabs/general.php:59
+#: views/tabs/general.php:67
+#: views/tabs/general.php:75
+msgid "Enable"
+msgstr ""
+
+#: views/tabs/filters.php:36
+msgid "Show Only On These Woocommerce Categories"
+msgstr ""
+
+#: views/tabs/filters.php:37
+msgid "Leave empty if you want to show popups on all categories."
+msgstr ""
+
+#: views/tabs/style.php:9
+msgid "Size"
+msgstr ""
+
+#: views/tabs/style.php:13
+msgid "Default"
+msgstr ""
+
+#: views/tabs/style.php:14
+msgid "Small"
+msgstr ""
+
+#: views/tabs/style.php:20
+msgid "Position"
+msgstr ""
+
+#: views/tabs/style.php:24
+msgid "Top Center"
+msgstr ""
+
+#: views/tabs/style.php:25
+msgid "Top Left"
+msgstr ""
+
+#: views/tabs/style.php:26
+msgid "Top Right"
+msgstr ""
+
+#: views/tabs/style.php:27
+msgid "Center Left"
+msgstr ""
+
+#: views/tabs/style.php:28
+msgid "Center Right"
+msgstr ""
+
+#: views/tabs/style.php:29
+msgid "Bottom Center"
+msgstr ""
+
+#: views/tabs/style.php:30
+msgid "Bottom Left"
+msgstr ""
+
+#: views/tabs/style.php:31
+msgid "Bottom Right"
+msgstr ""
+
+#: views/tabs/style.php:37
+msgid "Opening Animation"
+msgstr ""
+
+#: views/tabs/style.php:41
+msgid "Fade"
+msgstr ""
+
+#: views/tabs/style.php:42
+msgid "Pop"
+msgstr ""
+
+#: views/tabs/style.php:43
+msgid "Wobble Skew"
+msgstr ""
+
+#: views/tabs/style.php:44
+msgid "Buzz Out"
+msgstr ""
+
+#: views/tabs/style.php:45
+msgid "Slide Up"
+msgstr ""
+
+#: views/tabs/style.php:46
+msgid "Slide Down"
+msgstr ""
+
+#: views/tabs/style.php:47
+msgid "Slide Left"
+msgstr ""
+
+#: views/tabs/style.php:48
+msgid "Slide Right"
+msgstr ""
+
+#: views/tabs/style.php:54
+msgid "Shape"
+msgstr ""
+
+#: views/tabs/style.php:58
+msgid "Rectangle"
+msgstr ""
+
+#: views/tabs/style.php:59
+msgid "Rounded"
+msgstr ""
+
+#: views/tabs/style.php:60
+msgid "Bordered"
+msgstr ""
+
+#: views/tabs/style.php:66
+msgid "Background Color"
+msgstr ""
+
+#: views/tabs/style.php:74
+msgid "Text Color"
+msgstr ""
+
+#: views/tabs/style.php:82
+msgid "Strong Tags Color"
+msgstr ""
+
+#: views/tabs/style.php:90
+msgid "Close Button Color"
+msgstr ""
+
+#: views/tabs/style.php:98
+msgid "Stars Color (Unrated)"
+msgstr ""
+
+#: views/tabs/style.php:106
+msgid "Stars Color (rated)"
+msgstr ""
+
+#: views/tabs/advanced.php:8
+msgid "Campaign Tracking"
+msgstr ""
+
+#: views/tabs/advanced.php:15
+msgid "Disable Popup Link"
+msgstr ""
+
+#: views/tabs/advanced.php:16
+msgid "Enable this option if you want to disable the popup link."
+msgstr ""
+
+#: views/tabs/advanced.php:23
+msgid "Product Title Max Words"
+msgstr ""
+
+#: views/tabs/advanced.php:24
+msgid "min: 1"
+msgstr ""
+
+#: views/tabs/general.php:9
+msgid "Display"
+msgstr ""
+
+#: views/tabs/general.php:13
+msgid "Recent Sales ( Reviews )"
+msgstr ""
+
+#: views/tabs/general.php:14
+msgid "Random Sales ( Reviews )"
+msgstr ""
+
+#: views/tabs/general.php:19
+msgid "Display Orders With Status \"Processing\""
+msgstr ""
+
+#: views/tabs/general.php:26
+msgid "Display Review Popups"
+msgstr ""
+
+#: views/tabs/general.php:27
+msgid "Enable this option if you want push review popups."
+msgstr ""
+
+#: views/tabs/general.php:27
+msgid "Woomotiv will only show reviews that have 4 stars and above."
+msgstr ""
+
+#: views/tabs/general.php:34
+msgid "Number of Popups to Show"
+msgstr ""
+
+#: views/tabs/general.php:35
+msgid "Minimum: 1"
+msgstr ""
+
+#: views/tabs/general.php:41
+msgid "Delay Time Between 2 Notifications"
+msgstr ""
+
+#: views/tabs/general.php:42
+#: views/tabs/general.php:49
+msgid "Second(s)"
+msgstr ""
+
+#: views/tabs/general.php:48
+msgid "Notification Display Time"
+msgstr ""
+
+#: views/tabs/general.php:55
+msgid "Display Admin Own Notifications"
+msgstr ""
+
+#: views/tabs/general.php:56
+msgid "Enable this option if you want the admin to see his own orders in the popups"
+msgstr ""
+
+#: views/tabs/general.php:63
+msgid "Display Customers Own Notifications"
+msgstr ""
+
+#: views/tabs/general.php:64
+msgid "Enable this option if you want the logged in customers to see their own orders in the popups"
+msgstr ""
+
+#: views/tabs/general.php:71
+msgid "Display Buyer Avatar"
+msgstr ""
+
+#: views/tabs/general.php:72
+msgid "If enabled the user avatar will be displayed instead of the product image"
+msgstr ""
+
+#: views/tabs/general.php:79
+msgid "Hide on Mobile"
+msgstr ""
+
+#: views/tabs/general.php:86
+msgid "Hide Close Button"
+msgstr ""
+
+#: views/admin-settings.php:15
+msgid "Documentation"
+msgstr ""
+
+#: views/admin-settings.php:18
+msgid "Try premium version"
+msgstr ""
+
+#: views/admin-settings.php:36
+msgid "Save changes"
+msgstr ""
+
+#: views/custom-popup/add.php:5
+#: views/custom-popup/edit.php:5
+msgid "Custom Popup"
+msgstr ""
+
+#: views/custom-popup/add.php:9
+#: views/custom-popup/edit.php:9
+msgid "Save"
+msgstr ""
+
+#: views/custom-popup/add.php:10
+#: views/custom-popup/edit.php:10
+msgid "Close"
+msgstr ""
+
+#: views/custom-popup/add.php:32
+#: views/custom-popup/edit.php:34
+msgid "Content"
+msgstr ""
+
+#: views/custom-popup/add.php:37
+#: views/custom-popup/edit.php:39
+msgid "Use {} to make a specific word or sentence font bold."
+msgstr ""
+
+#: views/custom-popup/add.php:39
+#: views/custom-popup/edit.php:41
+msgid "Ex: Use this coupon code {CP20OFF} to get 20% off."
+msgstr ""
+
+#: views/custom-popup/add.php:45
+#: views/custom-popup/edit.php:47
+msgid "Url"
+msgstr ""
+
+#: views/custom-popup/edit.php:26
+msgid "Upload Image"
+msgstr ""
