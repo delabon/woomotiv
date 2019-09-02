@@ -10,7 +10,7 @@
 .woomotiv-popup{
     z-index: 999999;
     position: fixed;
-    width: 350px;
+    width: 380px;
     max-width: 100%;
     overflow: hidden;
     font-size: 15px;
@@ -183,7 +183,7 @@
 
 .woomotiv-popup[data-size="small"]{
     font-size: 13px;
-    width: 280px;
+    width: 300px;
     margin-right: 10px;
 }
 

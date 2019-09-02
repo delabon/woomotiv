@@ -108,7 +108,8 @@ function get_orders()
 {
     global  $wpdb ;
     $raw = "\n        SELECT \n            POSTS.ID, POSTS.post_status, POSTS.post_type, \n            WCITEMS.order_item_id, WCITEMS.order_item_type, \n            WCITEMMETA.meta_value  AS 'product_id', \n            POSTMETA.meta_value AS 'customer_id'\n        \n        FROM {$wpdb->prefix}posts AS POSTS\n        \n        LEFT JOIN\n            {$wpdb->prefix}woocommerce_order_items AS WCITEMS \n                ON \n                    WCITEMS.order_id = POSTS.ID\n                AND \n                    WCITEMS.order_item_type IN ('line_item')\n        \n        LEFT JOIN\n            {$wpdb->prefix}woocommerce_order_itemmeta AS WCITEMMETA\n                ON\n                    WCITEMS.order_item_id = WCITEMMETA.order_item_id\n                AND\n                    WCITEMMETA.meta_key = '_product_id'\n        \n        LEFT JOIN\n            {$wpdb->prefix}postmeta AS POSTMETA\n                ON \n                    POSTMETA.post_id = POSTS.ID\n                AND\n                    POSTMETA.meta_key = '_customer_user'\n        ";
-    $raw .= "\n            WHERE\n                post_status = 'wc-completed'\n                AND\n                post_type = 'shop_order'\n        ";
+    $raw .= "\n                WHERE\n                    post_status = 'wc-completed' \n            ";
+    $raw .= " AND post_type = 'shop_order'";
     // exclude current user orders
     if ( is_user_logged_in() ) {
         

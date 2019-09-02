@@ -9,7 +9,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <div class="wrap">
 	
-	<h1>Woomotiv <span class="page-title-action">Version <?php echo woomotiv()->version ?></span></h1>
+	<h1>
+		Woomotiv 
+		<span class="page-title-action">Version <?php echo woomotiv()->version ?></span>
+		<a target="_blank" href="https://delabon.com/documentation/24/index.html" class="page-title-action"><?php _e('Documentation', 'woomotiv') ?></a>	
+
+		<?php if( wmv_fs()->is_free_plan() ): ?>
+			<a target="_blank" href="https://delabon.com/plugin/woomotiv-woocommerce-sales-popups/pricing" class="page-title-action"><?php _e('Try premium version', 'woomotiv') ?></a>	
+		<?php endif; ?>
+
+	</h1>
 
 	<br><br>
 	

@@ -1,96 +1,68 @@
-=== Woomotiv - Woocommerce Sales Notifications | Live Sales Popups ===
-Contributors: Sabri Taieb, freemius
+=== Sales Popups for Woocommerce - Woomotiv ===
+Contributors: delabon
 Requires at least: 4.6
 Tested up to: 5.2.2
-Stable tag: 2.4.0
+Stable tag: 2.5.0
 Requires PHP: 5.4
-Tags: woocommerce, woocommerce plugin, marketing, boost sales, conversion rate
+Tags: woocommerce notification, woocommerce sales notification, woocommerce sales popup, marketing, boost sales, boost conversion
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Leverage social proof to increase trust, traffic and sales. A Woocommerce notifications plugin that pushes recent sales notifications.
+Leverage social proof to increase trust, traffic and sales. 
+A Woocommerce notification plugin that pushes recent sales popups to future customers.
 
 == Description ==
+
+[See Live Demo](https://delabon.com/demo/woomotiv/ "See Live Demo")
+
+Woomotiv is a sales popups for Woocommerce. It shows proof to future customers that your site is busy and trustworthy to buy from.
 
 If you run a Woocommerce store, chances are pretty high that you would like to convert more of your visitors into buyers.
 
 **Almost 97%~ of visitors**, stop by, they click around and they leave without buying a product or a service. All online stores face this particular problem. **Which, is the lack of TRUST.**
 
-Luckily, this is something that can be improved a lot with the use of **Woocommerce social proof**.
+Luckily, this is something that can be improved a lot with the use of **Woocommerce Notification**.
 
 > The tendency to see an action as more appropriate when others are doing it. 
 **Dr.Robert Cialdini**
 
-## Woocommerce Notifications
-The goal of adding Woocommerce live sales notifications is to use social proof for building trust, creating a sense of activity and driving conversions.
-**Just let your customers do the selling for you.** 
-
-> People tend to trust things more when other people trusted it first.
-
-## Benefits of Woocommerce Live Sales Popups
+## Benefits of Sales Notification for Woocommerce
 * Makes your online store trustworthy.
 * Shows that your Woocommerce site is popular and busy.
 * Creates a sense of urgency.
 * Shows trending products.
 * Boosts your conversion rate (Which, is the most important thing in business).
 
-## Top Features
-
-### Most amazing feature of Woomotiv is:
-Absolutely no configuration needed! yes, Woomotiv comes pre-configured. No need to connect your Woocommerce store with a backend platform like other plugins require. Just install it and let it do its magic.
-
-### Recent or Random sales popups
-Random sales popups is a powerful feature for new online shops which have few orders. And recent sales popups is suitable for online shops that are more popular. (We support all !)
-
-### Show real names and avatars ( if available )
-You can customize the Woocommerce sales popups as you like. You can show the buyer name, avatar, and location.  Woomotiv will replace the buyer avatar if not available by the product featured thumbnail.
-
-### Real-time customization
-Change colors, shape, animation, and position. and see your changes live before saving them. isn't that amazing?
-
-### Responsive design
-Works beautifully on all kind of devices.
-
-### Speed is money!
-Woomotiv Uses Ajax technology. It will load the notifications after your site display. 
-
-Here is a live demo [Woomotiv Live Demo](http://demo.delabon.com/woomotiv/ "Woomotiv Live Demo")
-
-## Features
-* Recent / Random Sales popups
-* Display Customer Avatar
-* Display Product Featured image
-* Change Popup Size
-* Multiple Positions
-* Multiple Shapes
-* Multiple Animations
-* Unlimited Colors
-* Preview Style Changes
-* Customize the popup text
-* Campaign Tracking
-* Filters
-* Easy to use
-* Fast and lightweight 
-* No limit
-* More Features
+## Top Featuress
+* Absolutely no configuration needed! (No need to connect your Woocommerce store with a backend platform like other plugins require)
+* Recent / Random Sales popups.
+* Display Customer Avatar ( if not available, it will show the product image ).
+* Display Product Featured image.
+* Responsive: Works beautifully on all kind of devices.
+* Speed: It Uses Ajax technology. 
+* Live customization.
+* Change Popup Size.
+* Multiple Positions.
+* Multiple Shapes.
+* Multiple Animations.
+* Unlimited Colors.
+* Preview Style Changes.
+* Customize the popup text.
+* Campaign Tracking.
+* Filters.
+* Easy to use.
+* Fast and lightweight. 
+* No limit.
+* And more
 
 ## Premium version features
 All features from the free version and:
 
-### Woocommerce reviews popups 
-Reviews popups is a very powerful feature of the premium version of Woomotiv.
+* Woocommerce reviews notification
+* Shows still processing orders notification
+* Report
 
-According to CompUSA and an iPerceptions study, “**63% of consumers indicate they are more likely to purchase from a site if it has product ratings and reviews.**”
-
-### Woocommerce Custom popups 
-Custom popups is another amazing feature. With it, you can create custom notifications. Upload any image and add any text you like.
-
-Ex: "**Fast use this WOOMOTIV15 coupon today to get 15% off.**"
-
-### Report
-Track clicks and popular products by day, month, and year.
-
-[Go premium today](https://delabon.com/plugin/woomotiv-woocommerce-sales-popups/pricing "Woomotiv Premium") **risk-free 14-day money back guarantee**
+[Go premium today](https://delabon.com/store/sales-notification-for-woocommerce "Woomotiv Notification Pro") **risk-free 14-day money back guarantee**
 
 == Installation ==
 
@@ -120,13 +92,22 @@ Yes, just submit a support ticket from here: https://delabon.com/support
 
 Absolutely Yes! you can use it on your client sites.
 
-
 == Screenshots ==
 
 1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif).
 2. This is the second screen shot
 
 == Changelog ==
+
+= 2.5.1 =
+
+* Update: Made the size a little bit bigger.
+
+= 2.5.0 =
+
+* New: Replaced the display processing orders filter to an admin setting.
+* Update: Updated Language file.
+* Fix: Fixed bugs.
 
 = 2.4.0 =
 

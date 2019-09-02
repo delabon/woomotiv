@@ -1,9 +1,9 @@
 <?php
 
 /*
-Plugin Name: Woomotiv
-Description: Powerful and easy to use Woocommerce Plugin that leverages social proof to increase your conversions.
-Version: 2.4.0
+Plugin Name: Woomotiv - Sales Popups for Woocommerce
+Description: Laverage social proof to increase truct, traffic and sales.
+Version: 2.5.1
 Author: Sabri Taieb
 Author Uri: https://delabon.com
 Text Domain: woomotiv
@@ -13,7 +13,7 @@ Domain Path: /languages
 defined( 'ABSPATH' ) or die( 'Mmmmm Funny ?' );
 
 # Defined
-define( 'WOOMOTIV_VERSION', '2.4.0' );
+define( 'WOOMOTIV_VERSION', '2.5.1' );
 define( 'WOOMOTIV_URL', plugins_url( '', __FILE__ ) );
 define( 'WOOMOTIV_DIR', __DIR__ );
 

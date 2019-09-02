@@ -2,7 +2,7 @@
  * Plugin
  */
 (function( $ ){
-
+    
     var win = $( window );
     var body = $('body');
     var nonce = woomotivObj.nonce;
@@ -359,25 +359,26 @@
 
         });
         
-        // Mobile Devices
-        win.resize(function( event ){
+        // Mobile Devices        
+        if( woomotivObj.size !== 'small' ){
 
-            if( woomotivObj.size == 'small' ) return;
-
-            clearInterval( resizeTimer );
-
-            resizeTimer = setTimeout(function(){
-                
-                if( win.width() < 380 ){
-                    items.attr('data-size', 'small');
-                }
-                else{
-                    items.attr('data-size', 'default');
-                }
-
-            }, 20 );
-
-        }).resize();
+            win.resize(function( event ){
+    
+                clearInterval( resizeTimer );
+    
+                resizeTimer = setTimeout(function(){
+                                        
+                    if( win.width() < 440 ){
+                        items.attr('data-size', 'small');
+                    }
+                    else{
+                        items.attr('data-size', 'default');
+                    }
+    
+                }, 20 );
+    
+            }).resize();
+        }
 
     });
 

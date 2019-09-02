@@ -16,6 +16,13 @@ HTML::radio(array(
 ))
 
 .HTML::checkbox(array( 
+    'title' => __('Display Orders With Status "Processing"', 'woomotiv') . upgrade_link() ,
+    'name' => 'woomotiv_display_processing_orders', 
+    'value' => woomotiv()->config->woomotiv_display_processing_orders,
+    'text' => __('Enable','woomotiv'),
+))
+
+.HTML::checkbox(array( 
     'title' => __('Display Review Popups', 'woomotiv') . upgrade_link() ,
     'description' => __('Enable this option if you want push review popups.', 'woomotiv') . '<br>' . __('Woomotiv will only show reviews that have 4 stars and above.', 'woomotiv'),
     'name' => 'woomotiv_display_reviews', 

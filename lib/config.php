@@ -3,19 +3,20 @@
 return array(
 
     // general
-    'woomotiv_display_order'        => 'recent_sales',
-    'woomotiv_display_reviews'      => 1,
-    'woomotiv_limit'                => 30,
-    'woomotiv_interval'             => 8,
-    'woomotiv_hide'                 => 4,
-    'woomotiv_admin_popups'         => 1,
+    'woomotiv_display_order'                => 'recent_sales',
+    'woomotiv_display_processing_orders'    => 0,
+    'woomotiv_display_reviews'              => 1,
+    'woomotiv_limit'                        => 30,
+    'woomotiv_interval'                     => 8,
+    'woomotiv_hide'                         => 4,
+    'woomotiv_admin_popups'                 => 1,
     'woomotiv_logged_own_orders'    => 1,
     'woomotiv_user_avatar'          => 0,
     'woomotiv_hide_on_mobile'       => 0,
     'woomotiv_hide_close_button'    => 0,
 
     // style
-    'woomotiv_style_size'           => 'default',
+    'woomotiv_style_size'           => 'small',
     'woomotiv_position'             => 'bottom_right',
     'woomotiv_animation'            => 'fade',
     'woomotiv_shape'                => 'rounded',
