@@ -2,7 +2,7 @@
 Contributors: delabon
 Requires at least: 4.6
 Tested up to: 5.2.2
-Stable tag: 2.5.0
+Stable tag: 2.6.0
 Requires PHP: 5.4
 Tags: woocommerce notification, woocommerce sales notification, woocommerce sales popup, marketing, boost sales, boost conversion
 License: GPLv2 or later
@@ -98,6 +98,14 @@ Absolutely Yes! you can use it on your client sites.
 2. This is the second screen shot
 
 == Changelog ==
+
+= 2.6.0 =
+
+* New: 3 Shapes.
+* New: Random Shape (If selected, Woomotiv will randomly select a shape).
+* New: Ability to change the background color of the close button.
+* Update: Auto width ( helps with products that have large titles ).
+* Update: Translation file.
 
 = 2.5.1 =
 

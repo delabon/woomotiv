@@ -130,7 +130,15 @@ class Frontend{
         // JS
         wp_enqueue_script( 'woomotiv', woomotiv()->url . '/js/front.min.js', array('jquery'), woomotiv()->version, true );
     
+        $shape = woomotiv()->config->woomotiv_shape;
+
+        if( $shape === 'random' ){
+            $shapes = array( 'rectangle', 'rectangle_2', 'rounded', 'rounded_2', 'bordered', 'bordered_2' );
+            $shape = $shapes[ array_rand( $shapes ) ];
+        }
+
         wp_localize_script( 'woomotiv', 'woomotivObj', array(
+            'site_hash'     => md5( get_home_url() ),
             'nonce'         => wp_create_nonce('woomotiv'),
             'ajax_url'      => admin_url( 'admin-ajax.php' ),
             'limit'         => (int)woomotiv()->config->woomotiv_limit,
@@ -138,7 +146,7 @@ class Frontend{
             'hide'          => (int)woomotiv()->config->woomotiv_hide,
             'position'      => woomotiv()->config->woomotiv_position,
             'animation'     => woomotiv()->config->woomotiv_animation,
-            'shape'         => woomotiv()->config->woomotiv_shape, 
+            'shape'         => $shape, 
             'size'          => woomotiv()->config->woomotiv_style_size, 
             'hide_mobile'   => woomotiv()->config->woomotiv_hide_on_mobile,
             'user_avatar'   => woomotiv()->config->woomotiv_user_avatar,

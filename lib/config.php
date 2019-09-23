@@ -23,7 +23,8 @@ return array(
     'woomotiv_bg'                   => '#ffffff',
     'woomotiv_style_text_color'     => '#010101',
     'woomotiv_style_strong_color'   => '#010101',
-    'woomotiv_style_close_color'    => '#010101',
+    'woomotiv_style_close_color'    => '#ffffff',
+    'woomotiv_style_close_bg_color'    => '#010101',
     'woomotiv_style_stars_color'    => '#dbdbdb',
     'woomotiv_style_stars_rated_color' => '#ffd635',
 

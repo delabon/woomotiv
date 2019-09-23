@@ -33,15 +33,18 @@
 			popup.css( 'background-color', self.val() );
 		}
 		else if( self.is('[data-css="text"]') ){
-			popup.find('.woomotiv-content p').css( 'color', self.val() );
+			popup.find('.woomotiv-popup > p').css( 'color', self.val() );
 		}
 		else if( self.is('[data-css="strong"]') ){
-			popup.find('.woomotiv-content p strong').css( 'color', self.val() );
+			popup.find('.woomotiv-popup > p strong').css( 'color', self.val() );
 		}
 		else if( self.is('[data-css="close"]') ){
-			popup.find('.woomotiv-close').css( 'fill', self.val() );
+			popup.find('.woomotiv-close').css( 'color', self.val() );
 		}
-
+		else if( self.is('[data-css="close_bg"]') ){
+			popup.find('.woomotiv-close').css( 'background-color', self.val() );
+		}
+		
 	});
 
 	/**

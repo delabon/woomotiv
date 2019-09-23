@@ -6,6 +6,22 @@ use function WooMotiv\upgrade_link;
 return 
 
 HTML::select(array( 
+    'title' => __('Shape', 'woomotiv'),
+    'name' =>  'woomotiv_shape', 
+    'value' => woomotiv()->config->woomotiv_shape,
+    'items' => array(
+        'random'     => __('Random','woomotiv'),
+        'rectangle'     => __('Rectangle','woomotiv'),
+        'rectangle_2'     => __('Rectangle 2','woomotiv'),
+        'rounded'       => __('Rounded','woomotiv'),
+        'rounded_2'       => __('Rounded 2','woomotiv'),
+        'bordered'      => __('Bordered','woomotiv'),
+        'bordered_2'      => __('Bordered 2','woomotiv'),
+    ),
+    'class' => 'dlb_input vvoo_input_shape',
+))
+
+.HTML::select(array( 
     'title' => __('Size', 'woomotiv'),
     'name' =>  'woomotiv_style_size', 
     'value' => woomotiv()->config->woomotiv_style_size,
@@ -50,18 +66,6 @@ HTML::select(array(
     'class' => 'dlb_input vvoo_input_animation',
 ))
 
-.HTML::select(array( 
-    'title' => __('Shape', 'woomotiv'),
-    'name' =>  'woomotiv_shape', 
-    'value' => woomotiv()->config->woomotiv_shape,
-    'items' => array(
-        'rectangle'     => __('Rectangle','woomotiv'),
-        'rounded'       => __('Rounded','woomotiv'),
-        'bordered'      => __('Bordered','woomotiv'),
-    ),
-    'class' => 'dlb_input vvoo_input_shape',
-))
-
 .HTML::input(array( 
     'title' => __('Background Color', 'woomotiv'),
     'name' => 'woomotiv_bg',
@@ -87,14 +91,6 @@ HTML::select(array(
 ))
 
 .HTML::input(array( 
-    'title' => __('Close Button Color', 'woomotiv'),
-    'name' => 'woomotiv_style_close_color', 
-    'value' => woomotiv()->config->woomotiv_style_close_color,
-    'class' => 'dlb_input dlb_input_colorpicker',
-    'data-css' => 'close',
-))
-
-.HTML::input(array( 
     'title' => __('Stars Color (Unrated)', 'woomotiv') . upgrade_link() ,
     'name' => 'woomotiv_style_stars_color', 
     'value' => woomotiv()->config->woomotiv_style_stars_color,
@@ -108,6 +104,22 @@ HTML::select(array(
     'value' => woomotiv()->config->woomotiv_style_stars_rated_color,
     'class' => 'dlb_input dlb_input_colorpicker',
     'data-css' => 'stars_rated',
+))
+
+.HTML::input(array( 
+    'title' => __('Close Button Color', 'woomotiv'),
+    'name' => 'woomotiv_style_close_color', 
+    'value' => woomotiv()->config->woomotiv_style_close_color,
+    'class' => 'dlb_input dlb_input_colorpicker',
+    'data-css' => 'close',
+))
+
+.HTML::input(array( 
+    'title' => __('Close Button Background Color', 'woomotiv'),
+    'name' => 'woomotiv_style_close_bg_color', 
+    'value' => woomotiv()->config->woomotiv_style_close_bg_color,
+    'class' => 'dlb_input dlb_input_colorpicker',
+    'data-css' => 'close_bg',
 ))
 
 ;

@@ -4,7 +4,6 @@ namespace WooMotiv;
 
 use WooMotiv\Framework\Alert;
 use WooMotiv\Framework\Panel;
-use WooMotiv\Framework\Helper;
 
 class Backend{
 
@@ -197,27 +196,26 @@ class Backend{
         if( isset($_GET['tab']) && $_GET['tab'] == 'style' ){
 
             $style = require ( woomotiv()->dir . '/views/custom-css.php' );
+            $link = "https://delabon.com/store/sales-notification-for-woocommerce";
 
             echo '<style>' . $style . '</style>
+
                 <div data-size="'.woomotiv()->config->woomotiv_style_size.'" data-shape="'.woomotiv()->config->woomotiv_shape.'" data-position="'.woomotiv()->config->woomotiv_position.'" data-animation="'.woomotiv()->config->woomotiv_animation.'" class="woomotiv-popup wmt-index-0 wmt-current" data-index="0">
-                    <div class="woomotiv-container">
-                        <div class="woomotiv-image">
-                            <img src="'.woomotiv()->url.'/img/150.png">
-                        </div>
-                        <div class="woomotiv-content">
-                            <p>
-                                <strong class="wmt-buyer">John D</strong> . recently purchased <br>
-                                <strong class="wmt-product">Hoodie With Logo</strong> <br>
-                                <span class="wmt-by">By <span>Woomotiv</span></span>
-                            </p>
-                        </div>                    
+
+                    <div class="woomotiv-image">
+                        <img src="'.woomotiv()->url.'/img/150.png">
                     </div>
-                    <a class="woomotiv-link" href="http://woomotiv.delabon.com"></a>
-                    <div class="woomotiv-close" style="display:inline-block;">
-                        <svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/>
-                        </svg>
-                    </div>
+
+                    <p>
+                        <strong class="wmt-buyer">John D</strong> . recently purchased <br>
+                        <strong class="wmt-product">Hoodie With Logo</strong> <br>
+                        <span class="wmt-by">By <span>Woomotiv</span></span>
+
+                        <a class="woomotiv-link" href="https://delabon.com/store/sales-notification-for-woocommerce"></a>
+                        
+                        <span class="woomotiv-close" style="display:inline-block;">&times;</span>
+                    </p>
+
                 </div>
             ';
 

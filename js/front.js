@@ -136,14 +136,14 @@
         
         body.append(
             '<div data-index="' + iii + '" data-type="order" data-product="' + item.product.id + '" class="woomotiv-popup wmt-index-' + iii + '" data-size="'+woomotivObj.size+'" data-shape="'+woomotivObj.shape+'" data-animation="'+woomotivObj.animation+'" data-position="'+woomotivObj.position+'" data-hideonmobile="'+woomotivObj.hide_mobile+'">\
-                <div class="woomotiv-container">\
-                    <div class="woomotiv-image" >\
-                        ' + ( woomotivObj.user_avatar == 0 ? item.product.thumbnail_img : item.user.avatar_img ) + '\
-                    </div>\
-                    <div class="woomotiv-content"><p>' + content_lines + '</p></div>\
+                <div class="woomotiv-image" >\
+                    ' + ( woomotivObj.user_avatar == 0 ? item.product.thumbnail_img : item.user.avatar_img ) + '\
                 </div>\
-                <a class="woomotiv-link"'+( woomotivObj.disable_link == 1 ? '' : ' href="' + item.product.url + '"' )+'></a>\
-                <a class="woomotiv-close ' + ( woomotivObj.hide_close_button == 1 ? '__hidden__' : '' ) + '"><svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></a>\
+                <p>\
+                    '+ content_lines + '\
+                    <a class="woomotiv-link"'+( woomotivObj.disable_link == 1 ? '' : ' href="' + item.product.url + '"' )+'></a>\
+                    <a class="woomotiv-close ' + ( woomotivObj.hide_close_button == 1 ? '__hidden__' : '' ) + '">&times</a>\
+                </p>\
             </div>'
         );
 
@@ -177,14 +177,17 @@
         
         body.append(
             '<div data-index="' + iii + '" data-type="review" data-product="' + item.product.id + '" class="woomotiv-popup wmt-index-' + iii + '" data-size="'+woomotivObj.size+'" data-shape="'+woomotivObj.shape+'" data-animation="'+woomotivObj.animation+'" data-position="'+woomotivObj.position+'" data-hideonmobile="'+woomotivObj.hide_mobile+'">\
-                <div class="woomotiv-container">\
-                    <div class="woomotiv-image" >\
-                        ' + ( woomotivObj.user_avatar == 0 ? item.product.thumbnail_img : item.user.avatar_img ) + '\
-                    </div>\
-                    <div class="woomotiv-content"><p>' + content_lines + '<br><span class="wmt-stars"><span style="width:' + (item.stars / 5) * 100 + '%"></span></span></p></div>\
+                <div class="woomotiv-image" >\
+                    ' + ( woomotivObj.user_avatar == 0 ? item.product.thumbnail_img : item.user.avatar_img ) + '\
                 </div>\
-                <a class="woomotiv-link"'+( woomotivObj.disable_link == 1 ? '' : ' href="' + item.product.url + '"' )+'></a>\
-                <a class="woomotiv-close ' + ( woomotivObj.hide_close_button == 1 ? '__hidden__' : '' ) + '"><svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></a>\
+                <p>\
+                    ' + content_lines + '<br>\
+                    <span class="wmt-stars">\
+                        <span style="width:' + (item.stars / 5) * 100 + '%"></span>\
+                    </span>\
+                    <a class="woomotiv-link"'+( woomotivObj.disable_link == 1 ? '' : ' href="' + item.product.url + '"' )+'></a>\
+                    <a class="woomotiv-close ' + ( woomotivObj.hide_close_button == 1 ? '__hidden__' : '' ) + '">&times</a>\
+                </p>\
             </div>'
         );
 
@@ -200,19 +203,20 @@
         item = item.popup;
 
         var content = item.content;
+        content = content.replace( /{new_line}/gi, '<br>'); // must be before strong shortcode {}
         content = content.replace( /\{/gi, '<strong>' );
         content = content.replace( /\}/gi, '</strong>' );
 
         body.append(
             '<div data-index="' + iii + '" data-type="custom" data-id="' + item.id + '" class="woomotiv-popup wmt-index-' + iii + '" data-size="'+woomotivObj.size+'" data-shape="'+woomotivObj.shape+'" data-animation="'+woomotivObj.animation+'" data-position="'+woomotivObj.position+'" data-hideonmobile="'+woomotivObj.hide_mobile+'">\
-                <div class="woomotiv-container">\
-                    <div class="woomotiv-image" >\
-                        ' + item.image + '\
-                    </div>\
-                    <div class="woomotiv-content"><p>' + content + '</p></div>\
+                <div class="woomotiv-image" >\
+                    ' + item.image + '\
                 </div>\
-                <a class="woomotiv-link"'+( woomotivObj.disable_link == 1 ? '' : ' href="' + item.link + '"' )+'></a>\
-                <a class="woomotiv-close ' + ( woomotivObj.hide_close_button == 1 ? '__hidden__' : '' ) + '"><svg viewBox="0 0 24 24" width="12" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z"/></svg></a>\
+                <p>\
+                    ' + content + '\
+                    <a class="woomotiv-link"'+( woomotivObj.disable_link == 1 ? '' : ' href="' + item.link + '"' )+'></a>\
+                    <a class="woomotiv-close ' + ( woomotivObj.hide_close_button == 1 ? '__hidden__' : '' ) + '">&times</a>\
+                </p>\
             </div>'
         );
 
@@ -256,8 +260,8 @@
         if( ! response.hasOwnProperty( 'data' ) ) return;
         if( response.data.length === 0 ) return;
 
-        if( localStorage.getItem('woomotiv_pause_date') ){
-            var pause_date = new Date( localStorage.getItem('woomotiv_pause_date') );
+        if( localStorage.getItem('woomotiv_pause_date_' + woomotivObj.site_hash ) ){
+            var pause_date = new Date( localStorage.getItem('woomotiv_pause_date_' + woomotivObj.site_hash ) );
 
             if( pause_date > new Date() ){
                 return;
@@ -325,7 +329,7 @@
 
         items.find('.woomotiv-close').on( 'click', function( event ){
             items.remove();
-            localStorage.setItem('woomotiv_pause_date', dateAdd( new Date(), 'hour', 1 ) );
+            localStorage.setItem('woomotiv_pause_date_' + woomotivObj.site_hash , dateAdd( new Date(), 'minute', 30 ) );
         });
 
         // Stats Update
@@ -358,27 +362,6 @@
             });
 
         });
-        
-        // Mobile Devices        
-        if( woomotivObj.size !== 'small' ){
-
-            win.resize(function( event ){
-    
-                clearInterval( resizeTimer );
-    
-                resizeTimer = setTimeout(function(){
-                                        
-                    if( win.width() < 440 ){
-                        items.attr('data-size', 'small');
-                    }
-                    else{
-                        items.attr('data-size', 'default');
-                    }
-    
-                }, 20 );
-    
-            }).resize();
-        }
 
     });
 
