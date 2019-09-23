@@ -1,21 +1,21 @@
 # Copyright (C) 2019 Sabri Taieb
-# This file is distributed under the same license as the Woomotiv plugin.
+# This file is distributed under the same license as the Woomotiv - Sales Popups for Woocommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Woomotiv 2.5.0\n"
+"Project-Id-Version: Woomotiv - Sales Popups for Woocommerce 2.6.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woomotiv\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-08-15T12:10:31+02:00\n"
+"POT-Creation-Date: 2019-09-23T09:45:17+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.2.0\n"
 "X-Domain: woomotiv\n"
 
 #. Plugin Name of the plugin
-msgid "Woomotiv"
+msgid "Woomotiv - Sales Popups for Woocommerce"
 msgstr ""
 
 #. Description of the plugin
@@ -43,54 +43,54 @@ msgstr ""
 msgid "Please upgrade to use this feature. Upgrading helps me complete developing Woomotiv."
 msgstr ""
 
-#: lib/class-backend.php:47
+#: lib/class-backend.php:46
 msgid "Options Saved Successfuly"
 msgstr ""
 
-#: lib/class-backend.php:69
+#: lib/class-backend.php:68
 msgid "General"
 msgstr ""
 
-#: lib/class-backend.php:75
+#: lib/class-backend.php:74
 msgid "Content Template"
 msgstr ""
 
-#: lib/class-backend.php:81
+#: lib/class-backend.php:80
 #: views/tabs/report.php:185
 msgid "Custom Popups"
 msgstr ""
 
-#: lib/class-backend.php:81
+#: lib/class-backend.php:80
 msgid "new"
 msgstr ""
 
-#: lib/class-backend.php:87
+#: lib/class-backend.php:86
 msgid "Advanced"
 msgstr ""
 
-#: lib/class-backend.php:93
+#: lib/class-backend.php:92
 msgid "Filters"
 msgstr ""
 
-#: lib/class-backend.php:99
+#: lib/class-backend.php:98
 msgid "Appearance"
 msgstr ""
 
-#: lib/class-backend.php:105
+#: lib/class-backend.php:104
 #: views/tabs/report.php:20
 #: views/tabs/report.php:123
 msgid "Report"
 msgstr ""
 
-#: lib/class-backend.php:111
+#: lib/class-backend.php:110
 msgid "Discover"
 msgstr ""
 
-#: lib/class-backend.php:117
+#: lib/class-backend.php:116
 msgid "Change Log"
 msgstr ""
 
-#: lib/class-backend.php:169
+#: lib/class-backend.php:168
 msgid "Are you sure ?"
 msgstr ""
 
@@ -302,127 +302,147 @@ msgid "Leave empty if you want to show popups on all categories."
 msgstr ""
 
 #: views/tabs/style.php:9
-msgid "Size"
-msgstr ""
-
-#: views/tabs/style.php:13
-msgid "Default"
-msgstr ""
-
-#: views/tabs/style.php:14
-msgid "Small"
-msgstr ""
-
-#: views/tabs/style.php:20
-msgid "Position"
-msgstr ""
-
-#: views/tabs/style.php:24
-msgid "Top Center"
-msgstr ""
-
-#: views/tabs/style.php:25
-msgid "Top Left"
-msgstr ""
-
-#: views/tabs/style.php:26
-msgid "Top Right"
-msgstr ""
-
-#: views/tabs/style.php:27
-msgid "Center Left"
-msgstr ""
-
-#: views/tabs/style.php:28
-msgid "Center Right"
-msgstr ""
-
-#: views/tabs/style.php:29
-msgid "Bottom Center"
-msgstr ""
-
-#: views/tabs/style.php:30
-msgid "Bottom Left"
-msgstr ""
-
-#: views/tabs/style.php:31
-msgid "Bottom Right"
-msgstr ""
-
-#: views/tabs/style.php:37
-msgid "Opening Animation"
-msgstr ""
-
-#: views/tabs/style.php:41
-msgid "Fade"
-msgstr ""
-
-#: views/tabs/style.php:42
-msgid "Pop"
-msgstr ""
-
-#: views/tabs/style.php:43
-msgid "Wobble Skew"
-msgstr ""
-
-#: views/tabs/style.php:44
-msgid "Buzz Out"
-msgstr ""
-
-#: views/tabs/style.php:45
-msgid "Slide Up"
-msgstr ""
-
-#: views/tabs/style.php:46
-msgid "Slide Down"
-msgstr ""
-
-#: views/tabs/style.php:47
-msgid "Slide Left"
-msgstr ""
-
-#: views/tabs/style.php:48
-msgid "Slide Right"
-msgstr ""
-
-#: views/tabs/style.php:54
 msgid "Shape"
 msgstr ""
 
-#: views/tabs/style.php:58
+#: views/tabs/style.php:13
+msgid "Random"
+msgstr ""
+
+#: views/tabs/style.php:14
 msgid "Rectangle"
 msgstr ""
 
-#: views/tabs/style.php:59
+#: views/tabs/style.php:15
+msgid "Rectangle 2"
+msgstr ""
+
+#: views/tabs/style.php:16
 msgid "Rounded"
 msgstr ""
 
-#: views/tabs/style.php:60
+#: views/tabs/style.php:17
+msgid "Rounded 2"
+msgstr ""
+
+#: views/tabs/style.php:18
 msgid "Bordered"
 msgstr ""
 
-#: views/tabs/style.php:66
+#: views/tabs/style.php:19
+msgid "Bordered 2"
+msgstr ""
+
+#: views/tabs/style.php:25
+msgid "Size"
+msgstr ""
+
+#: views/tabs/style.php:29
+msgid "Default"
+msgstr ""
+
+#: views/tabs/style.php:30
+msgid "Small"
+msgstr ""
+
+#: views/tabs/style.php:36
+msgid "Position"
+msgstr ""
+
+#: views/tabs/style.php:40
+msgid "Top Center"
+msgstr ""
+
+#: views/tabs/style.php:41
+msgid "Top Left"
+msgstr ""
+
+#: views/tabs/style.php:42
+msgid "Top Right"
+msgstr ""
+
+#: views/tabs/style.php:43
+msgid "Center Left"
+msgstr ""
+
+#: views/tabs/style.php:44
+msgid "Center Right"
+msgstr ""
+
+#: views/tabs/style.php:45
+msgid "Bottom Center"
+msgstr ""
+
+#: views/tabs/style.php:46
+msgid "Bottom Left"
+msgstr ""
+
+#: views/tabs/style.php:47
+msgid "Bottom Right"
+msgstr ""
+
+#: views/tabs/style.php:53
+msgid "Opening Animation"
+msgstr ""
+
+#: views/tabs/style.php:57
+msgid "Fade"
+msgstr ""
+
+#: views/tabs/style.php:58
+msgid "Pop"
+msgstr ""
+
+#: views/tabs/style.php:59
+msgid "Wobble Skew"
+msgstr ""
+
+#: views/tabs/style.php:60
+msgid "Buzz Out"
+msgstr ""
+
+#: views/tabs/style.php:61
+msgid "Slide Up"
+msgstr ""
+
+#: views/tabs/style.php:62
+msgid "Slide Down"
+msgstr ""
+
+#: views/tabs/style.php:63
+msgid "Slide Left"
+msgstr ""
+
+#: views/tabs/style.php:64
+msgid "Slide Right"
+msgstr ""
+
+#: views/tabs/style.php:70
 msgid "Background Color"
 msgstr ""
 
-#: views/tabs/style.php:74
+#: views/tabs/style.php:78
 msgid "Text Color"
 msgstr ""
 
-#: views/tabs/style.php:82
+#: views/tabs/style.php:86
 msgid "Strong Tags Color"
 msgstr ""
 
-#: views/tabs/style.php:90
-msgid "Close Button Color"
-msgstr ""
-
-#: views/tabs/style.php:98
+#: views/tabs/style.php:94
 msgid "Stars Color (Unrated)"
 msgstr ""
 
-#: views/tabs/style.php:106
+#: views/tabs/style.php:102
 msgid "Stars Color (rated)"
+msgstr ""
+
+#: views/tabs/style.php:110
+msgid "Close Button Color"
+msgstr ""
+
+#: views/tabs/style.php:118
+msgid "Close Button Background Color"
 msgstr ""
 
 #: views/tabs/advanced.php:8

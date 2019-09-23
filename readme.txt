@@ -1,8 +1,8 @@
 === Sales Popups for Woocommerce - Woomotiv ===
 Contributors: delabon
 Requires at least: 4.6
-Tested up to: 5.2.2
-Stable tag: 2.6.0
+Tested up to: 5.2.3
+Stable tag: 2.6.1
 Requires PHP: 5.4
 Tags: woocommerce notification, woocommerce sales notification, woocommerce sales popup, marketing, boost sales, boost conversion
 License: GPLv2 or later
@@ -58,11 +58,12 @@ Luckily, this is something that can be improved a lot with the use of **Woocomme
 ## Premium version features
 All features from the free version and:
 
-* Woocommerce reviews notification
-* Shows still processing orders notification
+* Woocommerce reviews notifications
+* Custom notifications
+* Shows still processing orders notifications
 * Report
 
-[Go premium today](https://delabon.com/store/sales-notification-for-woocommerce "Woomotiv Notification Pro") **risk-free 14-day money back guarantee**
+[Go premium today](https://delabon.com/store/sales-notification-for-woocommerce "Woomotiv - Woocommerce Notification Pro") **risk-free 14-day money back guarantee**
 
 == Installation ==
 
@@ -99,8 +100,9 @@ Absolutely Yes! you can use it on your client sites.
 
 == Changelog ==
 
-= 2.6.0 =
+= 2.6.0 / 2.6.1 =
 
+* Fixed: Frontend RTL issues (v2.6.1). 
 * New: 3 Shapes.
 * New: Random Shape (If selected, Woomotiv will randomly select a shape).
 * New: Ability to change the background color of the close button.
