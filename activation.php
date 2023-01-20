@@ -73,7 +73,7 @@ add_action( 'admin_init', function (){
     
         if( ! isset( $_GET['activate-multi'] ) ) {
 
-            wp_redirect( "admin.php?page=woomotiv&tab=changelog" );
+            wp_redirect( "admin.php?page=woomotiv" );
         
         }
     }

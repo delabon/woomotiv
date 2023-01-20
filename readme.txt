@@ -1,9 +1,9 @@
-=== Sales Popups for Woocommerce - Woomotiv ===
+=== Live Sales Notification for Woocommerce - Woomotiv ===
 Contributors: delabon
 Requires at least: 4.6
-Tested up to: 5.2.3
-Stable tag: 2.6.1
-Requires PHP: 5.4
+Tested up to: 6.0.0
+Stable tag: 3.4.1
+Requires PHP: 5.6
 Tags: woocommerce notification, woocommerce sales notification, woocommerce sales popup, marketing, boost sales, boost conversion
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -15,7 +15,9 @@ A Woocommerce notification plugin that pushes recent sales popups to future cust
 
 [See Live Demo](https://delabon.com/demo/woomotiv/ "See Live Demo")
 
-Woomotiv is a sales popups for Woocommerce. It shows proof to future customers that your site is busy and trustworthy to buy from.
+**Premium features are free! Download now!**
+
+Woomotiv is a live sales notification for Woocommerce plugin. It shows proof to future customers that your site is busy and trustworthy to buy from.
 
 If you run a Woocommerce store, chances are pretty high that you would like to convert more of your visitors into buyers.
 
@@ -35,10 +37,14 @@ Luckily, this is something that can be improved a lot with the use of **Woocomme
 
 ## Top Featuress
 * Absolutely no configuration needed! (No need to connect your Woocommerce store with a backend platform like other plugins require)
-* Recent / Random Sales popups.
+* Recent / Random Sales notifications.
+* Display reviews notifications
+* Custom notifications
 * Display Customer Avatar ( if not available, it will show the product image ).
 * Display Product Featured image.
+* Report
 * Responsive: Works beautifully on all kind of devices.
+* Shows still processing orders notifications
 * Speed: It Uses Ajax technology. 
 * Live customization.
 * Change Popup Size.
@@ -54,16 +60,6 @@ Luckily, this is something that can be improved a lot with the use of **Woocomme
 * Fast and lightweight. 
 * No limit.
 * And more
-
-## Premium version features
-All features from the free version and:
-
-* Woocommerce reviews notifications
-* Custom notifications
-* Shows still processing orders notifications
-* Report
-
-[Go premium today](https://delabon.com/store/sales-notification-for-woocommerce "Woomotiv - Woocommerce Notification Pro") **risk-free 14-day money back guarantee**
 
 == Installation ==
 
@@ -99,6 +95,130 @@ Absolutely Yes! you can use it on your client sites.
 2. This is the second screen shot
 
 == Changelog ==
+
+= 3.4.1 =
+
+* Updated Woomotiv to use cookies instead of localstorage
+* Woocommerce 6.6 support!
+
+= 3.4.0 =
+
+* All features are free now!
+* Woocommerce 5.9 support!
+
+= 3.3.1 =
+
+* Fixed PHP warnings
+
+= 3.3.0 =
+
+* Out of stock products are hidden by default now.
+* Fixed popups order issue
+
+= 3.2.1 =
+
+* Fixed DDOS issue
+
+= 3.2.0 =
+
+* SQL query update
+* Popups for each product in an order
+
+= 3.1.0 =
+
+* Updated random sales/reviews functionality
+
+= 3.0.0 =
+
+* Added No-repeat functionality.
+* Core updates
+* Fixed a few bugs
+
+= 2.15.5 =
+
+* Fixed some bugs
+
+= 2.15.4 =
+
+* Fixed some bugs
+
+= 2.15.2 =
+
+* Fixed PHP Warnings
+
+= 2.15.1 =
+
+* Fixed a bug
+
+= 2.15.0 =
+
+* Fix for products without thumbnails.
+* Updated freemius to latest version.
+* Woocommerce 5.1+ support.
+
+= 2.14.1 =
+
+* Updated freemius to latest version.
+* Woocommerce 4.6+ support.
+
+= 2.14.0 =
+
+* Added ability to exclude products.
+
+= 2.13.0 =
+
+* Improved privacy.
+
+= 2.12.0 =
+
+* Woocommerce 4.2+ support.
+* Get reviews system.
+
+= 2.11.0 =
+
+* Wordpress Multisite support.
+* Upgraded Freemius SDK to lastest version.
+
+= 2.10.1 =
+
+* Fixed headers already sent warning
+
+= 2.10.0 =
+
+* Fixed a preview bug (admin panel)
+* CSS tweaks
+
+= 2.8.8 =
+
+* Admin Panel Improvements
+
+= 2.8.7 =
+
+* Dev: Removed unnecessary admin notices.
+* Updated: Updated translation file.
+
+= 2.8.5 =
+
+* Dev: Improved the wildcard excluder.
+
+= 2.8.4 =
+
+* Dev: Woomotiv use its own star icon now instead of the Woocommerce one.
+* Dev: Code improvements.
+
+= 2.8.2 =
+
+* Fix: Font size issue when popup size is set to "small".
+
+= 2.8.0 =
+
+* New: Font size ( Mobile / Desktop & Tablet ).
+* Dev: Min popup width = 300px.
+* Test: Woocommerce 3.8+ support.
+
+= 2.7.0 =
+
+* New: Ability to exclude pages using a wildcard (*). 
 
 = 2.6.0 / 2.6.1 =
 

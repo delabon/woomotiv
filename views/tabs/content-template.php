@@ -1,7 +1,6 @@
 <?php 
 
 use WooMotiv\Framework\HTML;
-use function WooMotiv\upgrade_link;
 
 return
 
@@ -19,7 +18,7 @@ HTML::textarea(array(
 ))
 
 .HTML::textarea(array( 
-    'title' => __('Review Content Template', 'woomotiv') . upgrade_link() ,
+    'title' => __('Review Content Template', 'woomotiv'),
     'description' => __('Available Template Tags','woomotiv') . ': 
         <br>{stars}
         <br>{new_line} 

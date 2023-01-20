@@ -1,23 +1,59 @@
 /**
- * Plugin
+ * Woomotive plugin (Frontend script)
  */
-(function( $ ){
+ (function( $ ){
     
-    var win = $( window );
     var body = $('body');
     var nonce = woomotivObj.nonce;
     var ajax_url = woomotivObj.ajax_url;
+    var currentIndex = 0;
+    var cookieDays = 365;
+    var noMoreItems = false;
+    var $items = [];
     var timer = false;
     var secTimer = false;
-    var resizeTimer = false;
     var intervalTime = parseInt( woomotivObj.interval ) * 1000;
     var hideTime = parseInt( woomotivObj.hide ) * 1000;
-    var items;
     var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
     var cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame;
     var requestAnimID;
+    var excluded = {
+        products: [],
+        reviews: [],
+        custom: [],
+    };
+    var isNoRepeatEnabled = parseInt(woomotivObj.is_no_repeat_enabled);
+    var excludedProductsKey = 'woomotiv_seen_products_' + woomotivObj.site_hash;
+    var excludedReviewsKey = 'woomotiv_seen_reviews_' + woomotivObj.site_hash;
+    var excludedCustomPopKey = 'woomotiv_seen_custompop_' + woomotivObj.site_hash;
 
-    function whichTransitionEvent(){
+    function getCookie(name){
+        var value = `; ${document.cookie}`;
+        var parts = value.split(`; ${name}=`);
+        
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    function setCookie(name, value, days){
+        
+        var expires = "";
+
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+    function deleteCookie(name) {
+        document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+
+    window.deleteCookie = deleteCookie;
+
+    function whichTransitionEndEvent(){
         var t;
         var el = document.createElement('fakeelement');
         var transitions = {
@@ -34,7 +70,7 @@
         }
     }
 
-    function whichAnimationEvent(){
+    function whichAnimationEndEvent(){
         
         var t;
         var el = document.createElement('fakeelement');
@@ -53,9 +89,51 @@
         }
     }
 
-    var transitionEvent = whichTransitionEvent();
-    var animationEvent = whichAnimationEvent();
+    function whichTransitionStartEvent(){
+
+        var t;
+        var el = document.createElement('fakeelement');
+
+        var transitions = {
+          'transition':'transitionstart',
+          'OTransition':'oTransitionStart',
+          'MozTransition':'transitionstart',
+          'WebkitTransition':'webkitTransitionStart'
+        }
+    
+        for(t in transitions){
+            if( el.style[t] !== undefined ){
+                return transitions[t];
+            }
+        }
+    }
+
+    function whichAnimationStartEvent(){
+        
+        var t;
+        var el = document.createElement('fakeelement');
+
+        var transitions = {
+          'animation':'animationstart',
+          'OAnimation':'oAnimationStart',
+          'MozAnimation':'animationstart',
+          'WebkitAnimation':'webkitAnimationStart'
+        }
+    
+        for(t in transitions){            
+            if( el.style[t] !== undefined ){
+                return transitions[t];
+            }
+        }
+    }
+
+    var transitionEndEvent = whichTransitionEndEvent();
+    var animationEndEvent = whichAnimationEndEvent();
+    var transitionStartEvent = whichTransitionStartEvent();
+    var animationStartEvent = whichAnimationStartEvent();
     var transitionAnimations = [ 'fade', 'slideup', 'slidedown', 'slideright', 'slideleft' ];
+    var tStartEvent = transitionAnimations.indexOf( woomotivObj.animation ) != -1 ? transitionStartEvent : animationStartEvent;
+    var tEndEvent = transitionAnimations.indexOf( woomotivObj.animation ) != -1 ? transitionEndEvent : animationEndEvent;
 
     /**
      * Adds time to a date. Modelled after MySQL DATE_ADD function.
@@ -105,264 +183,317 @@
 
     }
 
-
-    /**
-     * Renders the order popup
-     * @param {object} item 
-     */
-    function renderOrder( item, iii ){
-        item = item.popup;
-         
-        if( ! item.user.first_name || item.user.first_name === '' ){
-            item.user.first_name = item.user.username;
-        }
-
-        if( ! item.user.last_name || item.user.last_name === '' ){
-            item.user.last_name = '';
-        }
-
-        var content_lines = woomotivObj.template_content;
-        content_lines = content_lines.replace( /{date}/gi, '<span class="wmt-date">' + item.date_completed + '</span>');
-        content_lines = content_lines.replace( /{new_line}/gi, '<br>');
-        content_lines = content_lines.replace( /{buyer}/gi, '<strong class="wmt-buyer">' + item.user.first_name + ' ' + item.user.last_name.charAt( 0 ) + '</strong>');
-        content_lines = content_lines.replace( /{product}/gi, '<strong class="wmt-product">' + item.product.name + '</strong>');
-        content_lines = content_lines.replace( /{by_woomotiv}/gi, '<span class="wmt-by">' + 'by <span>woomotiv</span>' + '</strong>');
-        content_lines = content_lines.replace( /{city}/gi, '<strong class="wmt-city">' + item.city  + '</strong>');
-        content_lines = content_lines.replace( /{country}/gi, '<strong class="wmt-country">' +  item.country + '</strong>');
-        content_lines = content_lines.replace( /{state}/gi, '<strong class="wmt-state">' + item.state + '</strong>');
-        content_lines = content_lines.replace( /{buyer_first_name}/gi, '<strong class="wmt-buyer-first-name">' + item.user.first_name + '</strong>');
-        content_lines = content_lines.replace( /{buyer_last_name}/gi, '<strong class="wmt-buyer-last-name">' + item.user.last_name + '</strong>');
-        content_lines = content_lines.replace( /{buyer_username}/gi, '<strong class="wmt-buyer-username">' + item.user.username + '</strong>');
-        
-        body.append(
-            '<div data-index="' + iii + '" data-type="order" data-product="' + item.product.id + '" class="woomotiv-popup wmt-index-' + iii + '" data-size="'+woomotivObj.size+'" data-shape="'+woomotivObj.shape+'" data-animation="'+woomotivObj.animation+'" data-position="'+woomotivObj.position+'" data-hideonmobile="'+woomotivObj.hide_mobile+'">\
-                <div class="woomotiv-image" >\
-                    ' + ( woomotivObj.user_avatar == 0 ? item.product.thumbnail_img : item.user.avatar_img ) + '\
-                </div>\
-                <p>\
-                    '+ content_lines + '\
-                    <a class="woomotiv-link"'+( woomotivObj.disable_link == 1 ? '' : ' href="' + item.product.url + '"' )+'></a>\
-                    <a class="woomotiv-close ' + ( woomotivObj.hide_close_button == 1 ? '__hidden__' : '' ) + '">&times</a>\
-                </p>\
-            </div>'
-        );
-
-        return iii + 1;
-    }
-
-    /**
-     * Renders Review Popup
-     * @param {object} item 
-     */
-    function renderReview( item, iii ){
-        item = item.popup;
-
-        if( ! item.user.first_name || item.user.first_name === '' ){
-            item.user.first_name = item.user.username;
-        }
-
-        if( ! item.user.last_name || item.user.last_name === '' ){
-            item.user.last_name = '';
-        }
-
-        var content_lines = woomotivObj.template_review;
-        content_lines = content_lines.replace( /{date}/gi, '<span class="wmt-date">' + item.date_completed + '</span>');
-        content_lines = content_lines.replace( /{new_line}/gi, '<br>');
-        content_lines = content_lines.replace( /{buyer}/gi, '<strong class="wmt-buyer">' + item.user.first_name + ' ' + item.user.last_name.charAt( 0 ) + '</strong>');
-        content_lines = content_lines.replace( /{product}/gi, '<strong class="wmt-product">' + item.product.name + '</strong>');
-        content_lines = content_lines.replace( /{by_woomotiv}/gi, '<span class="wmt-by">' + 'by <span>woomotiv</span>' + '</strong>');
-        content_lines = content_lines.replace( /{buyer_first_name}/gi, '<strong class="wmt-buyer-first-name">' + item.user.first_name + '</strong>');
-        content_lines = content_lines.replace( /{buyer_last_name}/gi, '<strong class="wmt-buyer-last-name">' + item.user.last_name + '</strong>');
-        content_lines = content_lines.replace( /{buyer_username}/gi, '<strong class="wmt-buyer-username">' + item.user.username + '</strong>');
-        
-        body.append(
-            '<div data-index="' + iii + '" data-type="review" data-product="' + item.product.id + '" class="woomotiv-popup wmt-index-' + iii + '" data-size="'+woomotivObj.size+'" data-shape="'+woomotivObj.shape+'" data-animation="'+woomotivObj.animation+'" data-position="'+woomotivObj.position+'" data-hideonmobile="'+woomotivObj.hide_mobile+'">\
-                <div class="woomotiv-image" >\
-                    ' + ( woomotivObj.user_avatar == 0 ? item.product.thumbnail_img : item.user.avatar_img ) + '\
-                </div>\
-                <p>\
-                    ' + content_lines + '<br>\
-                    <span class="wmt-stars">\
-                        <span style="width:' + (item.stars / 5) * 100 + '%"></span>\
-                    </span>\
-                    <a class="woomotiv-link"'+( woomotivObj.disable_link == 1 ? '' : ' href="' + item.product.url + '"' )+'></a>\
-                    <a class="woomotiv-close ' + ( woomotivObj.hide_close_button == 1 ? '__hidden__' : '' ) + '">&times</a>\
-                </p>\
-            </div>'
-        );
-
-        return iii + 1;
-    }
-
-
-    /**
-     * Renders Custom Popup
-     * @param {object} item 
-     */
-    function renderCustomPopup( item, iii ){
-        item = item.popup;
-
-        var content = item.content;
-        content = content.replace( /{new_line}/gi, '<br>'); // must be before strong shortcode {}
-        content = content.replace( /\{/gi, '<strong>' );
-        content = content.replace( /\}/gi, '</strong>' );
-
-        body.append(
-            '<div data-index="' + iii + '" data-type="custom" data-id="' + item.id + '" class="woomotiv-popup wmt-index-' + iii + '" data-size="'+woomotivObj.size+'" data-shape="'+woomotivObj.shape+'" data-animation="'+woomotivObj.animation+'" data-position="'+woomotivObj.position+'" data-hideonmobile="'+woomotivObj.hide_mobile+'">\
-                <div class="woomotiv-image" >\
-                    ' + item.image + '\
-                </div>\
-                <p>\
-                    ' + content + '\
-                    <a class="woomotiv-link"'+( woomotivObj.disable_link == 1 ? '' : ' href="' + item.link + '"' )+'></a>\
-                    <a class="woomotiv-close ' + ( woomotivObj.hide_close_button == 1 ? '__hidden__' : '' ) + '">&times</a>\
-                </p>\
-            </div>'
-        );
-
-        return iii + 1;
-    }
-    
-
     /**
      * Looper
      */
     function start( cindex ){
         
         cindex = parseInt( cindex );
+        currentIndex = cindex;
 
-        if( ! items.eq( cindex ).length ) cindex = 0;
+        var $item = $items[ cindex - 1 ];
 
-        var item = items.eq( cindex );
-        var cevent = transitionAnimations.indexOf( item.data('animation') ) != -1 ? transitionEvent : animationEvent;
+        // Show element
+        $item.addClass('wmt-current');
 
-        item.addClass('wmt-current').one( cevent , function(){
+        // item.one( tStartEvent, function(){
+        //     console.log(this);
+        // });
 
+        // First one fires after element is completely visible
+        // Second one after element is completetly hidden
+        $item.one( tEndEvent , function(){
+
+            // Update excluded
+            if( $item.is('[data-type="product"]') ){
+                addExcludedProduct( parseInt( $item.attr('data-orderitemid') ) );
+            }
+            else if( $item.is('[data-type="review"]') ){
+                addExcludedReview( parseInt( $item.attr('data-review') ) );
+            }
+            else if( $item.is('[data-type="custom"]') ){
+                addExcludedCustomPop( parseInt( $item.attr('data-id') ) );
+            }
+            
+            // Hide element
             secTimer = setTimeout(function(){
+                $item.removeClass('wmt-current');
 
-                item.removeClass('wmt-current');
+                // after animation is completed show the next one or fetch new popups
+                $item.one( tEndEvent , function(){
+                    timer = setTimeout( function(){
 
-                timer = setTimeout( function(){
+                        // Fetch new items if possible
+                        if( cindex === $items.length && ! noMoreItems ){
+                            getItems();
+                        }
+                        // Reset current index
+                        else if( cindex === $items.length && noMoreItems ){
+                            if( !isNoRepeatEnabled ){
+                                start( 1 );
+                            }
+                        }
+                        else{
+                            // Next one
+                            start( cindex + 1 );
+                        }
 
-                    start( cindex + 1 );
-                    
-                }, intervalTime );
-
-            }, hideTime );
-
-        });
-
-    }
-
-    // Get items and create html nodes 
-    ajax( 'get_items' ).done( function( response ){
-
-        if( ! response.hasOwnProperty( 'data' ) ) return;
-        if( response.data.length === 0 ) return;
-
-        if( localStorage.getItem('woomotiv_pause_date_' + woomotivObj.site_hash ) ){
-            var pause_date = new Date( localStorage.getItem('woomotiv_pause_date_' + woomotivObj.site_hash ) );
-
-            if( pause_date > new Date() ){
-                return;
-            }
-        }
-        
-        var iii = 0;
-        
-        Object.keys( response.data ).map( function( key, index ){
-
-            var item = response.data[ key ];
-
-            if( item.type === 'order' ){
-                iii = renderOrder( item, iii );
-            }
-            else if( item.type === 'review' ){
-                iii = renderReview( item, iii );
-            }
-            else{
-                iii = renderCustomPopup( item, iii );
-            }
-
-        });
-
-        // show time
-        items = $('.woomotiv-popup');
-        
-        setTimeout(function(){
-            
-            requestAnimID = requestAnimationFrame( function(){
-                start( 0 );
-            });
-
-        }, parseInt( intervalTime / 2 ) );
-
-        items.on( 'mouseenter', function( event ){
-            clearTimeout( timer );
-            clearTimeout( secTimer );
-            cancelAnimationFrame(requestAnimID);
-        });
-
-        items.on( 'mouseleave', function( event ){
-
-            var item = items.filter('.wmt-current');
-            var index = item.data('index');
-            var halftime = parseInt( hideTime / 2 );
-
-            if( index === undefined ) return;
-            
-            setTimeout(function(){
-
-                item.removeClass('wmt-current');
-                
-            }, halftime );
-
-            setTimeout( function (){
-                
-                requestAnimID = requestAnimationFrame( function(){
-                    start( item.data('index') + 1 );
+                    }, intervalTime );
                 });
 
-            }, ( hideTime + hideTime ) );
+            }, hideTime );
+        });
+    }
 
+    /**
+     * Add excluded product to storage
+     * @param {*} orderItemId 
+     */
+    function addExcludedProduct( orderItemId ){
+
+        var products = getExcludedProductsFromStorage();
+        var isFound = false;
+
+        products.map(function( item ){
+            if( item == orderItemId ) isFound = true;
         });
 
-        items.find('.woomotiv-close').on( 'click', function( event ){
-            items.remove();
-            localStorage.setItem('woomotiv_pause_date_' + woomotivObj.site_hash , dateAdd( new Date(), 'minute', 30 ) );
+        if( ! isFound ){
+            products.push(orderItemId);
+            setCookie(excludedProductsKey, products.join(','), cookieDays);
+        }
+    }
+
+    /**
+     * Add excluded review to storage
+     * @param {*} reviewId 
+     */
+    function addExcludedReview( reviewId ){
+        
+        var reviews = getExcludedReviewsFromStorage();
+        var isFound = false;
+
+        reviews.map(function( item ){
+            if( item == reviewId ) isFound = true;
         });
 
-        // Stats Update
-        items.on( 'click', function( event ){
+        if( ! isFound ){
+            reviews.push(reviewId);
+            setCookie(excludedReviewsKey, reviews.join(','), cookieDays);
+        }
+    }
 
-            event.preventDefault();
+    /**
+     * Add excluded custom popup to storage
+     * @param {*} reviewId 
+     */
+    function addExcludedCustomPop( id ){
 
-            var self = $(this);
-            var data = {};
+        var customPops = getExcludedCustomPopsFromStorage();
+        var isFound = false;
 
-            if( self.data('type') === 'order' ){
-                data.type = 'order';
-                data.product_id = self.data('product');
+        customPops.map(function( item ){
+            if( item == id ) isFound = true;
+        });
+
+        if( ! isFound ){
+            customPops.push(id);
+            setCookie(excludedCustomPopKey, customPops.join(','), cookieDays);
+        }
+    }
+
+    /**
+     * Return excluded products from localStorage
+     * 
+     * @returns {array}
+     */
+    function getExcludedProductsFromStorage(){
+
+        var products = getCookie(excludedProductsKey);
+        products = ! products ? [] : products.split(',');
+
+        return products.filter(function(item){
+
+            if( item === "" ) return false;
+
+            return true;
+        });
+    }
+
+    /**
+     * Return excluded reviews from localStorage
+     * 
+     * @returns {array}
+     */
+    function getExcludedReviewsFromStorage(){
+
+        var reviews = getCookie(excludedReviewsKey);
+        reviews = ! reviews ? [] : reviews.split(',');
+
+        return reviews.filter(function(item){
+            
+            if( item === "" ) return false;
+
+            return true;
+        });
+    }
+
+    /**
+     * Return excluded custom popups from localStorage
+     * 
+     * @returns {array}
+     */
+    function getExcludedCustomPopsFromStorage(){
+
+        var customPops = getCookie(excludedCustomPopKey);
+        customPops = ! customPops ? [] : customPops.split(',');
+
+        return customPops.filter(function(item){
+            
+            if( item === "" ) return false;
+
+            return true;
+        });
+    }
+
+    /**
+     * Clear localStorage
+     */
+    function clearCookies(){
+        deleteCookie(excludedProductsKey);
+        deleteCookie(excludedReviewsKey);
+        deleteCookie(excludedCustomPopKey);
+    }
+
+    /**
+     * Get items using ajax
+     */
+    function getItems(){
+        
+        // Get items and create html nodes 
+        ajax('get_items', {}).done( function(response){
+
+            if( ! response.hasOwnProperty( 'data' ) ) return;
+            if( response.data === '' ) return;
+            if( response.data.length === 0 && isNoRepeatEnabled) return;
+
+            // No more popups, let's show the first 1
+            if( response.data.length === 0 ){
+                noMoreItems = true;
+                start(1);
+                return;
             }
-            else if( self.data('type') === 'review' ){
-                data.type = 'review';
-                data.product_id = self.data('product');
-            }
-            else{
-                data.type = 'custom';
-                data.id = self.data('id');
-            }
 
-            ajax( 'update_stats', data ).done(function( response ){
+            // Add the new popups to the body
+            response.data.map(function( itemData ){
+
+                var $item = $(itemData.markup);
                 
-                if( woomotivObj.disable_link != 1 ){
-                    location.href = self.find('.woomotiv-link').attr('href');
-                }
+                $item.attr('data-index', $items.length + 1);
 
+                // Add to body
+                body.append( $item );
+                $items.push( $item );
+
+                // New items events
+                $item.on( 'mouseenter', function( e ){
+                    $(this).off( tEndEvent );
+                    clearTimeout( timer );
+                    clearTimeout( secTimer );
+                    cancelAnimationFrame(requestAnimID);
+                });
+
+                $item.on( 'mouseleave', function( event ){
+
+                    var $this = $('.woomotiv-popup.wmt-current');
+                    var index = parseInt($this.attr('data-index'));
+                    var halftime = parseInt( hideTime / 2 );
+
+                    if( index === undefined ) return;
+                    
+                    setTimeout(function(){
+
+                        $this.removeClass('wmt-current');
+                        
+                    }, halftime );
+
+                    setTimeout( function (){
+                        
+                        requestAnimID = requestAnimationFrame( function(){
+                            start( index + 1 );
+                        });
+
+                    }, ( hideTime + hideTime ) );
+                });
+
+                $item.find('.woomotiv-close').on( 'click', function( event ){
+                    event.preventDefault();
+                    $('.woomotiv-popup').remove();
+                    setCookie('woomotiv_pause_date_' + woomotivObj.site_hash, dateAdd( new Date(), 'minute', 10 ), cookieDays);
+                });
+
+                // Stats Update
+                $item.on( 'click', function( event ){
+
+                    event.preventDefault();
+
+                    var self = $(this);
+                    var data = {};
+
+                    if( self.data('type') === 'product' ){
+                        data.type = 'product';
+                        data.product_id = self.data('product');
+                    }
+                    else if( self.data('type') === 'review' ){
+                        data.type = 'review';
+                        data.product_id = self.data('product');
+                    }
+                    else{
+                        data.type = 'custom';
+                        data.id = self.data('id');
+                    }
+
+                    ajax( 'update_stats', data ).done(function( response ){
+                                            
+                        if( woomotivObj.disable_link != 1 ){
+                            location.href = self.find('.woomotiv-link').attr('href');
+                        }
+
+                    });
+
+                });
             });
 
-        });
+            // show time
+            setTimeout(function(){
+                
+                requestAnimID = requestAnimationFrame( function(){
+                    start( currentIndex + 1 );
+                });
 
-    });
+            }, parseInt( intervalTime / 2 ) );
+
+        });
+    }
+
+    // No-repeat is disabled, lets clear cookies
+    if (!isNoRepeatEnabled){
+        clearCookies();
+    }
+
+    // Show time
+    if (getCookie('woomotiv_pause_date_' + woomotivObj.site_hash)){
+        var pause_date = new Date(getCookie('woomotiv_pause_date_' + woomotivObj.site_hash));
+
+        if (pause_date > new Date()){
+            return;
+        }
+        else {
+            getItems();
+        }
+    }
+    else {
+        getItems();
+    }
 
 })( jQuery );

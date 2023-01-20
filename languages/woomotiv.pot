@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Woomotiv - Sales Popups for Woocommerce plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Woomotiv - Sales Popups for Woocommerce 2.6.0\n"
+"Project-Id-Version: Woomotiv - Sales Popups for Woocommerce 2.8.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/woomotiv\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-09-23T09:45:17+02:00\n"
+"POT-Creation-Date: 2019-12-26T17:14:11+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.2.0\n"
 "X-Domain: woomotiv\n"
@@ -30,7 +30,7 @@ msgstr ""
 msgid "https://delabon.com"
 msgstr ""
 
-#: lib/class-popup.php:117
+#: lib/class-popup.php:147
 #: lib/class-popup-review.php:51
 msgid "ago"
 msgstr ""
@@ -73,7 +73,7 @@ msgid "Filters"
 msgstr ""
 
 #: lib/class-backend.php:98
-msgid "Appearance"
+msgid "Style"
 msgstr ""
 
 #: lib/class-backend.php:104
@@ -94,32 +94,8 @@ msgstr ""
 msgid "Are you sure ?"
 msgstr ""
 
-#: lib/hooks.php:39
-msgid "Woomotiv needs Woocommerce to be installed."
-msgstr ""
-
-#: lib/hooks.php:61
-msgid "Would you mind give it 5-stars review to help spread the word? And to keep me updating it & adding more features to it!"
-msgstr ""
-
-#: lib/hooks.php:63
-msgid "Would you want to get awesome features?"
-msgstr ""
-
-#: lib/hooks.php:65
-msgid "Review popups (Very powerful)."
-msgstr ""
-
-#: lib/hooks.php:67
-msgid "Custom popups."
-msgstr ""
-
-#: lib/hooks.php:69
-msgid "Display orders popups which still processing (Very powerful)."
-msgstr ""
-
-#: lib/hooks.php:71
-msgid "And more."
+#: lib/hooks.php:16
+msgid "Woomotiv requires Woocommerce."
 msgstr ""
 
 #: views/tabs/content-template.php:9
@@ -278,11 +254,11 @@ msgstr ""
 msgid "Add the excluded pages URL's here. ex:"
 msgstr ""
 
-#: views/tabs/filters.php:27
+#: views/tabs/filters.php:29
 msgid "Hide on All Articles"
 msgstr ""
 
-#: views/tabs/filters.php:30
+#: views/tabs/filters.php:32
 #: views/tabs/advanced.php:11
 #: views/tabs/advanced.php:19
 #: views/tabs/general.php:22
@@ -293,155 +269,163 @@ msgstr ""
 msgid "Enable"
 msgstr ""
 
-#: views/tabs/filters.php:36
+#: views/tabs/filters.php:38
 msgid "Show Only On These Woocommerce Categories"
 msgstr ""
 
-#: views/tabs/filters.php:37
+#: views/tabs/filters.php:39
 msgid "Leave empty if you want to show popups on all categories."
 msgstr ""
 
-#: views/tabs/style.php:9
-msgid "Shape"
-msgstr ""
-
-#: views/tabs/style.php:13
-msgid "Random"
-msgstr ""
-
-#: views/tabs/style.php:14
-msgid "Rectangle"
-msgstr ""
-
-#: views/tabs/style.php:15
-msgid "Rectangle 2"
-msgstr ""
-
-#: views/tabs/style.php:16
-msgid "Rounded"
-msgstr ""
-
-#: views/tabs/style.php:17
-msgid "Rounded 2"
+#: views/tabs/style.php:10
+msgid "Font Size (Desktop/Tablet)"
 msgstr ""
 
 #: views/tabs/style.php:18
-msgid "Bordered"
-msgstr ""
-
-#: views/tabs/style.php:19
-msgid "Bordered 2"
+msgid "Font Size (Mobile)"
 msgstr ""
 
 #: views/tabs/style.php:25
-msgid "Size"
+msgid "Shape"
 msgstr ""
 
 #: views/tabs/style.php:29
-msgid "Default"
+msgid "Random"
 msgstr ""
 
 #: views/tabs/style.php:30
-msgid "Small"
+msgid "Rectangle"
 msgstr ""
 
-#: views/tabs/style.php:36
-msgid "Position"
+#: views/tabs/style.php:31
+msgid "Rectangle 2"
 msgstr ""
 
-#: views/tabs/style.php:40
-msgid "Top Center"
+#: views/tabs/style.php:32
+msgid "Rounded"
+msgstr ""
+
+#: views/tabs/style.php:33
+msgid "Rounded 2"
+msgstr ""
+
+#: views/tabs/style.php:34
+msgid "Bordered"
+msgstr ""
+
+#: views/tabs/style.php:35
+msgid "Bordered 2"
 msgstr ""
 
 #: views/tabs/style.php:41
-msgid "Top Left"
-msgstr ""
-
-#: views/tabs/style.php:42
-msgid "Top Right"
-msgstr ""
-
-#: views/tabs/style.php:43
-msgid "Center Left"
-msgstr ""
-
-#: views/tabs/style.php:44
-msgid "Center Right"
+msgid "Size"
 msgstr ""
 
 #: views/tabs/style.php:45
-msgid "Bottom Center"
+msgid "Default"
 msgstr ""
 
 #: views/tabs/style.php:46
-msgid "Bottom Left"
+msgid "Small"
 msgstr ""
 
-#: views/tabs/style.php:47
-msgid "Bottom Right"
+#: views/tabs/style.php:52
+msgid "Position"
 msgstr ""
 
-#: views/tabs/style.php:53
-msgid "Opening Animation"
+#: views/tabs/style.php:56
+msgid "Top Center"
 msgstr ""
 
 #: views/tabs/style.php:57
-msgid "Fade"
+msgid "Top Left"
 msgstr ""
 
 #: views/tabs/style.php:58
-msgid "Pop"
+msgid "Top Right"
 msgstr ""
 
 #: views/tabs/style.php:59
-msgid "Wobble Skew"
+msgid "Center Left"
 msgstr ""
 
 #: views/tabs/style.php:60
-msgid "Buzz Out"
+msgid "Center Right"
 msgstr ""
 
 #: views/tabs/style.php:61
-msgid "Slide Up"
+msgid "Bottom Center"
 msgstr ""
 
 #: views/tabs/style.php:62
-msgid "Slide Down"
+msgid "Bottom Left"
 msgstr ""
 
 #: views/tabs/style.php:63
-msgid "Slide Left"
+msgid "Bottom Right"
 msgstr ""
 
-#: views/tabs/style.php:64
-msgid "Slide Right"
+#: views/tabs/style.php:69
+msgid "Opening Animation"
 msgstr ""
 
-#: views/tabs/style.php:70
-msgid "Background Color"
+#: views/tabs/style.php:73
+msgid "Fade"
+msgstr ""
+
+#: views/tabs/style.php:74
+msgid "Pop"
+msgstr ""
+
+#: views/tabs/style.php:75
+msgid "Wobble Skew"
+msgstr ""
+
+#: views/tabs/style.php:76
+msgid "Buzz Out"
+msgstr ""
+
+#: views/tabs/style.php:77
+msgid "Slide Up"
 msgstr ""
 
 #: views/tabs/style.php:78
-msgid "Text Color"
+msgid "Slide Down"
+msgstr ""
+
+#: views/tabs/style.php:79
+msgid "Slide Left"
+msgstr ""
+
+#: views/tabs/style.php:80
+msgid "Slide Right"
 msgstr ""
 
 #: views/tabs/style.php:86
-msgid "Strong Tags Color"
+msgid "Background Color"
 msgstr ""
 
 #: views/tabs/style.php:94
-msgid "Stars Color (Unrated)"
+msgid "Text Color"
 msgstr ""
 
 #: views/tabs/style.php:102
-msgid "Stars Color (rated)"
+msgid "Strong Tags Color"
 msgstr ""
 
 #: views/tabs/style.php:110
-msgid "Close Button Color"
+msgid "Stars Color (Unrated)"
 msgstr ""
 
 #: views/tabs/style.php:118
+msgid "Stars Color (rated)"
+msgstr ""
+
+#: views/tabs/style.php:126
+msgid "Close Button Color"
+msgstr ""
+
+#: views/tabs/style.php:134
 msgid "Close Button Background Color"
 msgstr ""
 

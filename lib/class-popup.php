@@ -11,15 +11,19 @@ class Popup{
     private $country_list;
     private $date_now;
 
-    function __construct( $order, $country_list, $date_now ){
+    function __construct( $data, $country_list, $date_now ){
 
-        $this->id = $order->id;
-        $this->order = $order->order;
-        $this->product = $order->product;
+        $order = $data['order'];
+        $product = $data['product'];
+
+        $this->id = $product->get_id();
+        $this->product = $product;
+        $this->order = $order;
         $this->date_now = $date_now;
         $this->country_list = $country_list;
 
-        $this->data['order_id'] = $this->id;
+        $this->data['order_id'] = $order->get_id();
+        $this->data['order_item_id'] = $data['order_item_id'];
 
         $this->setProduct();
         $this->setUserData();
@@ -32,6 +36,7 @@ class Popup{
      */
     private function setProduct(){
 
+        $thumbnail_size = apply_filters('woomotiv_product_image_size_filter', 'thumbnail');
         $this->data[ 'product' ] = array();
 
         $product = array(
@@ -41,15 +46,15 @@ class Popup{
             'slug' => $this->product->get_slug(),
             'url' => get_permalink( $this->product->get_id() ),
             'thumbnail_id' => get_post_thumbnail_id( $this->product->get_id() ),
-            'thumbnail_src' => wp_get_attachment_image_src( get_post_thumbnail_id( $this->product->get_id() ), 'thumbnail' ),
-            'thumbnail_img' => wp_get_attachment_image( get_post_thumbnail_id( $this->product->get_id() ), 'thumbnail' ),                
+            'thumbnail_src' => wp_get_attachment_image_src( get_post_thumbnail_id( $this->product->get_id() ), $thumbnail_size ),
+            'thumbnail_img' => wp_get_attachment_image( get_post_thumbnail_id( $this->product->get_id() ), $thumbnail_size ),                
         );
 
 		// if a variation
 		if( $this->product->get_parent_id() ){
             $product['thumbnail_id'] = get_post_thumbnail_id( $this->product->get_parent_id() );
-            $product['thumbnail_src'] = wp_get_attachment_image_src( get_post_thumbnail_id( $this->product->get_parent_id() ), 'thumbnail' );
-            $product['thumbnail_img'] = wp_get_attachment_image( get_post_thumbnail_id( $this->product->get_parent_id() ), 'thumbnail' );
+            $product['thumbnail_src'] = wp_get_attachment_image_src( get_post_thumbnail_id( $this->product->get_parent_id() ), $thumbnail_size );
+            $product['thumbnail_img'] = wp_get_attachment_image( get_post_thumbnail_id( $this->product->get_parent_id() ), $thumbnail_size );
 		}
 		
         if( woomotiv()->config->woomotiv_tracking == 1 ){
@@ -71,15 +76,18 @@ class Popup{
         $customer = get_userdata( $this->order->get_customer_id() );
 
 		if( ! $customer ){
+
 			$this->data['user'] = array(
 				'id' => 0,
 				'username' => $this->order->get_billing_first_name(),
 				'first_name' => $this->order->get_billing_first_name(),
 				'last_name' => $this->order->get_billing_last_name(),
 				'avatar_img' => $this->data['product']['thumbnail_img'],
-			);
+            );
+            
 		}
-		else{			
+		else{	
+            		
 			$this->data['user'] = array(
 				'id' => $this->order->get_customer_id(),
 				'username' => $customer->display_name,
@@ -97,7 +105,34 @@ class Popup{
     private function setGeoData(){
         $this->data[ 'city' ] = $this->order->get_billing_city();
         $this->data[ 'country' ] = strtolower( @$this->country_list[ $this->order->get_billing_country() ] );
-        $this->data[ 'state' ] = $this->order->get_billing_state();        
+        $this->data[ 'state' ] = $this->order->get_billing_state();
+        $this->data[ 'address' ] = $this->order->get_address();
+
+        // get from shippping
+        if( empty( $this->data['country'] ) ){
+            $this->data['country']= strtolower( @$this->country_list[ $this->order->get_shipping_country() ]);
+        }
+
+        if( empty( $this->data['state'] ) ){
+            $this->data['state']= $this->order->get_shipping_state();
+        }
+
+        if( empty( $this->data['city'] ) ){
+            $this->data['city']= $this->order->get_shipping_city();
+        }
+
+        // get from address
+        if( empty( $this->data['country'] ) ){
+            $this->data['country']= strtolower( @$this->country_list[ $this->data['address']['country'] ]);
+        }
+
+        if( empty( $this->data['state'] ) ){
+            $this->data['state']= $this->data['address']['state'];
+        }
+
+        if( empty( $this->data['city'] ) ){
+            $this->data['city']= $this->data['address']['city'];
+        }
     }
 
     /**

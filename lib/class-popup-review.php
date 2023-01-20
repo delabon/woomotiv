@@ -30,8 +30,8 @@ class Popup_Review{
         $this->data['user'] = array(
             'id' => $this->review->user_id,
             'username' => $this->review->username,
-            'first_name' => $this->review->user_first_name,
-            'last_name' => $this->review->user_first_name,
+            'first_name' => isset($this->review->user_first_name) ? $this->review->user_first_name : '',
+            'last_name' => isset($this->review->user_first_name) ? $this->review->user_first_name : '',
             'avatar' => get_avatar_url( $this->review->user_id, array( 'size' => 150 ) ),
             'avatar_img' => mod_avatar( $this->review->user_id, $this->data['product']['thumbnail_src'][0], $this->review->username ),
         );

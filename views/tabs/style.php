@@ -1,11 +1,26 @@
 <?php 
 
 use WooMotiv\Framework\HTML;
-use function WooMotiv\upgrade_link;
 
 return 
 
-HTML::select(array( 
+HTML::input(array( 
+    'type' => 'number',
+    'title' => __('Font Size (Desktop/Tablet)', 'woomotiv'),
+    'name' =>  'woomotiv_font_size', 
+    'value' => woomotiv()->config->woomotiv_font_size,
+    'class' => 'dlb_input vvoo_input_font_size',
+))
+
+.HTML::input(array( 
+    'type' => 'number',
+    'title' => __('Font Size (Mobile)', 'woomotiv'),
+    'name' =>  'woomotiv_font_size_mobile', 
+    'value' => woomotiv()->config->woomotiv_font_size_mobile,
+    'class' => 'dlb_input vvoo_input_font_size_mobile',
+))
+
+.HTML::select(array( 
     'title' => __('Shape', 'woomotiv'),
     'name' =>  'woomotiv_shape', 
     'value' => woomotiv()->config->woomotiv_shape,
@@ -55,9 +70,9 @@ HTML::select(array(
     'value' => woomotiv()->config->woomotiv_animation,
     'items' => array(
         'fade'          => __('Fade','woomotiv'),
-        'pop'           => __('Pop','woomotiv'),
-        'wobble-skew'   => __('Wobble Skew','woomotiv'),
-        'buzz-out'      => __('Buzz Out','woomotiv'),
+        // 'pop'           => __('Pop','woomotiv'),
+        // 'wobble-skew'   => __('Wobble Skew','woomotiv'),
+        // 'buzz-out'      => __('Buzz Out','woomotiv'),
         'slideup'       => __('Slide Up','woomotiv'),
         'slidedown'     => __('Slide Down','woomotiv'),
         'slideleft'     => __('Slide Left','woomotiv'),
@@ -91,7 +106,7 @@ HTML::select(array(
 ))
 
 .HTML::input(array( 
-    'title' => __('Stars Color (Unrated)', 'woomotiv') . upgrade_link() ,
+    'title' => __('Stars Color (Unrated)', 'woomotiv'),
     'name' => 'woomotiv_style_stars_color', 
     'value' => woomotiv()->config->woomotiv_style_stars_color,
     'class' => 'dlb_input dlb_input_colorpicker',
@@ -99,7 +114,7 @@ HTML::select(array(
 ))
 
 .HTML::input(array( 
-    'title' => __('Stars Color (rated)', 'woomotiv') . upgrade_link() ,
+    'title' => __('Stars Color (rated)', 'woomotiv'),
     'name' => 'woomotiv_style_stars_rated_color', 
     'value' => woomotiv()->config->woomotiv_style_stars_rated_color,
     'class' => 'dlb_input dlb_input_colorpicker',

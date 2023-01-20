@@ -3,6 +3,10 @@
 	display: none;
 }
 
+.__wmv_upgrade{
+	color: #d63031 !important;
+	border-color: #d63031 !important;
+}
 
 /**
  * Custom Popups

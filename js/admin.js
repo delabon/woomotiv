@@ -7,6 +7,7 @@
 	var animationUI = $('.vvoo_input_animation');
 	var shapeUI = $('.vvoo_input_shape');
 	var sizeUI = $('.woomotiv_style_size');
+	var fontSizeUI = $('[name="woomotiv_font_size"]');
 
     /**
      * Wrapper for $.ajax
@@ -65,6 +66,8 @@
 	 * Shape change
 	 */
 	shapeUI.on( 'change', function( event ){
+		console.log(shapeUI.val());
+		
 		popup.attr( 'data-shape', shapeUI.val() );
 	});
 
@@ -80,6 +83,12 @@
 
 	});
 	
+	/**
+	 * Font Size Change
+	 */
+	fontSizeUI.on('input', function(event){
+		popup.find('> p').css('font-size', fontSizeUI.val() + 'px' );
+	})
 
 	/*****************************************************
 	 # Table Sorter & Filters
@@ -253,8 +262,5 @@
 			});
 		}
 	});
-
-
-
 
 })( jQuery, jQuery( window ), jQuery('body') );

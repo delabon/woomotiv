@@ -20,15 +20,58 @@ class Backend{
     function init(){
         if( ! current_user_can( 'level_8' ) ) return;
 
+        add_action( 'admin_notices', array( $this, 'adminNotices' ) );
         add_action( 'admin_menu', array( $this, 'adminMenuAction' ) );
-        add_action( 'admin_enqueue_scripts', array( $this, 'loadAssets' ) );
+        add_action( 'admin_enqueue_scripts', array( $this, 'loadAssets' ), 2 );
         add_action( 'admin_footer', array( $this, 'printTemplates' ) );
+        add_action( 'network_admin_menu', array( $this, 'adminMenuMultisite' ));
 
-        # Ajax: custom popup
+        add_action( 'woocommerce_order_status_completed', array( $this, 'wc_order_status_completed'), 10, 1 );
+        add_action( 'admin_footer', array( $this, 'review_popup'), 0 );
+
+        # Ajax
         add_action('wp_ajax_woomotiv_custom_popup_add_form', array( $this, 'ajax_custom_popup_add_form') );
         add_action('wp_ajax_woomotiv_custom_popup_edit_form', array( $this, 'ajax_custom_popup_edit_form') );
         add_action('wp_ajax_woomotiv_custom_popup_save', array( $this, 'ajax_custom_popup_save') );
         add_action('wp_ajax_woomotiv_custom_popup_delete', array( $this, 'ajax_custom_popup_delete') );
+        add_action('wp_ajax_woomotiv_cancel_review', array( $this, 'ajax_cancel_review'));
+    }
+
+    /**
+     * Add top level menu when Multisite is enabled
+     *
+     * @return void
+     */
+    function adminMenuMultisite() {
+        add_menu_page( 
+            "Woomotive Mulsite", 
+            "Woomotive Mulsite", 
+            'manage_options', 
+            'woomotiv', 
+            function(){
+                ?>
+                    <div class="wrap">
+                        <h1 class="wp-heading-inline">Woomotiv Multisite</h1>
+                        <p>
+                            <strong>Each site has its Woomotiv settings page. And Woomotiv will display sales notification by site.</strong>
+                            <br>
+                            <a href="<?php echo admin_url('admin.php?page=woomotiv') ?>">Main site settings page.</a>
+                        </p>
+                    </div>
+                <?php 
+            } 
+        );  
+    } 
+
+    /**
+     * Admin notices
+     * Using this hook prevents headers already sent warning
+     */
+    function adminNotices() {
+
+        if( ! woomotiv()->request->post('woomotiv_nonce') ) return;
+
+        echo Alert::success( __('Options Saved Successfuly','woomotiv') );
     }
 
     /**
@@ -43,7 +86,8 @@ class Backend{
                 update_option( $key, $value );
             }
             
-            echo Alert::success( __('Options Saved Successfuly','woomotiv') );
+            // Clear cookies
+            clear_cookies();
         }
 
         add_menu_page( 
@@ -55,6 +99,23 @@ class Backend{
             'dashicons-money', 
             58 
         );
+
+        add_submenu_page( 
+            'woomotiv', 
+            __('Get Support', 'woomotiv'), 
+            __('Get Support', 'woomotiv'), 
+            'manage_options',
+            'woomotiv_contact', 
+            array( $this, 'render_contact_page' )
+        );
+    }
+
+    /**
+     * Render contact page
+     */
+    function render_contact_page(){
+        echo '<script>location.href="https://delabon.com/support";</script>';
+        die;
     }
 
     /**
@@ -95,7 +156,7 @@ class Backend{
         );
 
         $panel->addTab( 
-            __('Appearance','woomotiv'), 
+            __('Style','woomotiv'), 
             'style', 
             woomotiv()->dir . '/views/tabs/style.php' 
         );
@@ -106,11 +167,11 @@ class Backend{
             woomotiv()->dir . '/views/tabs/report.php' 
         );
 
-        $panel->addTab( 
-            __('Discover','woomotiv') . '<span style="background: orange;">3</span>', 
-            'discover',  
-            woomotiv()->dir . '/views/tabs/discover.php' 
-        );
+        // $panel->addTab( 
+        //     __('Discover','woomotiv') . '<span style="background: orange;">3</span>', 
+        //     'discover',  
+        //     woomotiv()->dir . '/views/tabs/discover.php' 
+        // );
 
         $panel->addTab( 
             __('Change Log','woomotiv'), 
@@ -126,6 +187,22 @@ class Backend{
      * Checkbox js helper
      */
     function loadAssets( $hook ){
+
+        // load it on all pages
+        wp_enqueue_style( 
+            'woomotiv_admin_review_popup', 
+            woomotiv()->url . '/css/admin-review-popup.css', 
+            array(), 
+            woomotiv()->version 
+        );
+
+        wp_enqueue_script( 
+            'woomotiv_admin_review_popup', 
+            woomotiv()->url . '/js/admin-review-popup.js', 
+            array('jquery'), 
+            woomotiv()->version, 
+            true 
+        );
 
         if( strpos( $hook, 'woomotiv' ) === false ) return;
 
@@ -362,6 +439,65 @@ class Backend{
         }
 
         response( true );
+    }
+
+    /**
+     * Fires when an order is completed
+     *
+     * @param [type] $order_id
+     * @return void
+     */
+    function wc_order_status_completed( $order_id ) {
+
+        $count = (int)get_option('woomotiv_sales_count_after_install', 0 );
+        $count += 1;
+
+        update_option('woomotiv_sales_count_after_install', $count);
+    }
+
+    /**
+     * Display a review popup
+     *
+     * @return void
+     */
+    function review_popup(){
+
+        $count = (int)get_option('woomotiv_sales_count_after_install', 0 );
+        $cancel_review_count = (int)get_option('woomotiv_cancel_review_count', 0 );
+        
+        if( ! in_array( $count, [ 5, 20, 100, 500, 1000 ] ) ) return;
+        if( $cancel_review_count === $count ) return;
+
+        ?>
+            <div class="woomotiv-reviews-popup">
+                <div class="woomotiv-reviews-popup-content">
+
+                    <img src="<?php echo WOOMOTIV_URL . '/img/trophy.png'; ?>" alt="Congrat" >
+                    
+                    <h1>Congratulations!</h1>
+                    <p>You have got <strong><?php echo $count ?> SALES</strong> since installing <strong>Woomotiv</strong>!</p>
+                    <p>Help Woomotiv by giving it 5 stars review!</p>
+                    <a href="<?php echo WOOMOTIV_REVIEW_URL; ?>" target="_blank" class="__go_review">Yes, I Will Help Now!</a>
+                    <br>
+                    <a href="#" class="__cancel_review">
+                        No, I don't want to help.
+                    </a>
+                </div>
+            </div>
+        <?php
+    }
+
+    /**
+     * Cancel review
+     *
+     * @return void
+     */
+    function ajax_cancel_review(){
+        
+        $count = (int)get_option('woomotiv_sales_count_after_install', 0 );
+        update_option('woomotiv_cancel_review_count', $count );
+
+        die;
     }
 
 }

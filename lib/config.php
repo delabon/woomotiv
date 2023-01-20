@@ -4,6 +4,7 @@ return array(
 
     // general
     'woomotiv_display_order'                => 'recent_sales',
+    'woomotiv_no_repeat_sales_reviews'      => 0,
     'woomotiv_display_processing_orders'    => 0,
     'woomotiv_display_reviews'              => 1,
     'woomotiv_limit'                        => 30,
@@ -16,10 +17,12 @@ return array(
     'woomotiv_hide_close_button'    => 0,
 
     // style
+    'woomotiv_font_size'            => 16,
+    'woomotiv_font_size_mobile'     => 16,
     'woomotiv_style_size'           => 'small',
     'woomotiv_position'             => 'bottom_right',
     'woomotiv_animation'            => 'fade',
-    'woomotiv_shape'                => 'rounded',
+    'woomotiv_shape'                => 'bordered',
     'woomotiv_bg'                   => '#ffffff',
     'woomotiv_style_text_color'     => '#010101',
     'woomotiv_style_strong_color'   => '#010101',
@@ -29,7 +32,7 @@ return array(
     'woomotiv_style_stars_rated_color' => '#ffd635',
 
     // content template
-    'woomotiv_content_content'      => '{buyer_username} recently purchased {new_line} {product}{new_line} {by_woomotiv}',
+    'woomotiv_content_content'      => 'Someone in {city}, {country} recently purchased{new_line}{product}{new_line}{by_woomotiv}',
     'woomotiv_template_review'      => '{buyer_username} recently rated {new_line}{product}',
 
     // advanced
@@ -42,5 +45,6 @@ return array(
     'woomotiv_filter_pages'         => '',
     'woomotiv_filter_posts'         => 0,
     'woomotiv_woocategories'        => '',
-    
+    'woomotiv_filter_products'      => '0',
+    'woomotiv_filter_out_of_stock'  => 0,
 );

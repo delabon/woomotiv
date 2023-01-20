@@ -11,6 +11,14 @@ class Config{
         $this->default = $default;
     }
 
+    function default( $key ){
+        if( isset( $this->default[ $key ] ) ){
+            return $this->default[ $key ];
+        }
+
+        return null;
+    }
+
     /**
      * Set
      */
@@ -55,7 +63,7 @@ class Config{
     /**
      * Delete
      */
-    public static function delete( $key ){
+    static function delete( $key ){
         delete_option( $key );
     }
 

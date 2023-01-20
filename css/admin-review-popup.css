@@ -1,0 +1,86 @@
+/**
+ * Review Popup
+ */
+ .woomotiv-reviews-popup{
+	z-index: 999999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.9);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.woomotiv-reviews-popup-content{
+	position: relative;
+	background-color: white;
+	width: 400px;
+	max-width: 100%;
+	height: auto;
+	padding: 30px 20px;
+	text-align: center;
+	border-radius: 12px;
+}
+
+.woomotiv-reviews-popup-content:before,
+.woomotiv-reviews-popup-content:after{
+	z-index: -1;
+	content: " ";
+	width: 97%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate( -50%, 10px);
+	background-color: rgba(255, 255, 255, 0.6);
+	border-radius: 12px;
+}
+
+.woomotiv-reviews-popup-content:after{
+	width: 90%;
+	transform: translate( -50%, 20px);
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.woomotiv-reviews-popup-content h1{
+	line-height: 1.4;
+} 
+
+.woomotiv-reviews-popup-content, 
+.woomotiv-reviews-popup-content p{
+	font-size: 1.1rem;
+}
+
+.woomotiv-reviews-popup-content strong{
+	font-weight: bold;
+}
+
+.woomotiv-reviews-popup-content a{
+	display: inline-flex;
+	justify-content: center;
+}
+
+.woomotiv-reviews-popup-content a.__go_review{
+	background-color: #FA593A;
+	color: white;
+	font-weight: bold;
+	line-height: 1.1;
+	padding: 10px 30px;
+	border-radius: 8px;
+	font-size: 1.1rem;
+	text-decoration: none;
+}
+
+.woomotiv-reviews-popup-content a.__cancel_review{
+	font-size: 0.85rem;
+	margin-top: 7px;
+}
+
+.woomotiv-reviews-popup-content img{
+	max-width: 100%;
+	display: block;
+	margin: 0 auto;
+}

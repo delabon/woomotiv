@@ -209,6 +209,65 @@ class HTML{
     }
 
     /**
+     * html multiple select
+     * @param array $atts
+     * @return string
+     */
+    static function selectMultiple( $atts = array() ){
+
+        $atts = wp_parse_args( $atts, array(
+            'name' => null,
+            'value' => '',
+            'class' => 'dlb_input',
+            'id' => null,
+            'title' => null,
+            'description' => null,
+            'wrapper' => true,
+            'wrapper_class' => 'dlb_input_wrapper',
+            'items' => array()
+        ));
+                    
+        extract( $atts );
+        
+        self::removeAtts( $atts, array( 'default', 'wrapper', 'wrapper_class', 'type', 'title', 'description', 'items' ));
+
+        $selectedItems = explode(',', $value);
+
+        $output = '<select class="'.$class.'" multiple>';
+        
+        foreach( $items as $item_key => $item_name ){
+
+            $is_selected = false;
+
+            foreach( $selectedItems as $selected_id ){
+                $selected_id = trim( $selected_id );
+
+                if( $item_key == $selected_id ){
+                    $is_selected = true;
+                }
+            }
+
+            $output .= '<option value="'.$item_key.'" '.( $is_selected ? 'selected="selected"' : '' ).'>'.$item_name.'</option>';
+        }
+
+        $output .= '</select>';
+
+        $output .= self::input([
+            'type' => 'hidden',
+            'wrapper' => false,
+            'value' => $value,
+            'name' => $name,
+            'id' => $id,
+        ]);
+
+        self::titleTag( $title, $output, $class );
+        self::descriptionTag( $description, $output, $class );
+        self::wrapper( $wrapper, $output, $wrapper_class );
+
+        return $output; 
+    }
+
+    /**
      * html radio
      * @param array $atts
      * @return string

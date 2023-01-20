@@ -1,7 +1,6 @@
 <?php 
 
 use WooMotiv\Framework\HTML;
-use function WooMotiv\upgrade_link;
 
 return 
 
@@ -16,14 +15,22 @@ HTML::radio(array(
 ))
 
 .HTML::checkbox(array( 
-    'title' => __('Display Orders With Status "Processing"', 'woomotiv') . upgrade_link() ,
+    'title' => __('No-repeat', 'woomotiv'),
+    'description' => __('Do not repeat the same Sales/Reviews popups.', 'woomotiv'),
+    'name' => 'woomotiv_no_repeat_sales_reviews', 
+    'value' => woomotiv()->config->woomotiv_no_repeat_sales_reviews,
+    'text' => __('Enable','woomotiv'),
+))
+
+.HTML::checkbox(array( 
+    'title' => __('Display Orders With Status "Processing"', 'woomotiv'),
     'name' => 'woomotiv_display_processing_orders', 
     'value' => woomotiv()->config->woomotiv_display_processing_orders,
     'text' => __('Enable','woomotiv'),
 ))
 
 .HTML::checkbox(array( 
-    'title' => __('Display Review Popups', 'woomotiv') . upgrade_link() ,
+    'title' => __('Display Review Popups', 'woomotiv'),
     'description' => __('Enable this option if you want push review popups.', 'woomotiv') . '<br>' . __('Woomotiv will only show reviews that have 4 stars and above.', 'woomotiv'),
     'name' => 'woomotiv_display_reviews', 
     'value' => woomotiv()->config->woomotiv_display_reviews,

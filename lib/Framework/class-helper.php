@@ -84,18 +84,26 @@ class Helper {
         if( ! is_array( $list ) ){
             $list = excludedListToArray( $list );
         }
-
+    
         $link = preg_replace( '/.*?https?:\/\//', '', $link );
-
+    
         foreach( $list as $excluded ){
-
+    
             $excluded_link = preg_replace( '/.*?https?:\/\//', '', $excluded );
-
-            if( $link === $excluded_link ){ 
+    
+            if( strpos( $excluded_link, '*' ) !== false ){
+                
+                $excluded_parts = explode( '*', $excluded_link );
+    
+                if( strpos( $link, $excluded_parts[0] ) !== false ){
+                    return true;
+                }
+            }
+            else if( $link === $excluded_link ){
                 return true;
             }
         }
-
+    
         return false;
     }
 

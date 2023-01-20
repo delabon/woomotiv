@@ -231,6 +231,16 @@
     max-width: 100%;
 }
 
+.dlb_input_wrapper select[multiple]{
+    min-height: 250px;
+    padding: 10px;
+}
+
+.dlb_input_wrapper select[multiple] option{
+    margin-bottom: 3px;
+    display: block;
+}
+
 .dlb_input_wrapper input[type="radio"],
 .dlb_input_wrapper input[type="checkbox"]{
     width: auto;
