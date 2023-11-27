@@ -395,7 +395,7 @@ function get_products(){
     }
 
     // Excluded products
-    if( count($excluded_products) ){
+    if( isset($excluded_products) && count($excluded_products) ){
         $excluded_products_str = implode(',', $excluded_products);
         $raw .= " AND C.ID NOT IN ({$excluded_products_str})";
     }
