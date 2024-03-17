@@ -2,6 +2,8 @@
 
 namespace WooMotiv;
 
+use Automattic\WooCommerce\Utilities\OrderUtil;
+
 /**
  * Returns DateTime object of the current time with the WP timezone
  *
@@ -329,102 +331,191 @@ function get_products(){
         $excluded_products = array_filter(explode( ',', $excluded_products ));
     }
 
-    $raw = "
-        SELECT 
-            C.ID AS product_id, 
-            A.order_id,
-            A.order_item_id,
-            D.post_status AS order_status,
-            F.meta_value AS customer_id,
-            J.meta_value AS stock_status
-        FROM 
-            {$wpdb->prefix}woocommerce_order_items AS A
-        INNER JOIN
-            {$wpdb->prefix}woocommerce_order_itemmeta AS B
+
+    if ( OrderUtil::custom_orders_table_usage_is_enabled() ) {
+        // HPOS usage is enabled.
+        $raw = "
+            SELECT 
+                C.ID AS product_id, 
+                A.order_id,
+                A.order_item_id,
+                D.status AS order_status,
+                D.customer_id,
+                J.meta_value AS stock_status
+            FROM 
+                {$wpdb->prefix}woocommerce_order_items AS A
+            INNER JOIN
+                {$wpdb->prefix}woocommerce_order_itemmeta AS B
+                    ON
+                        A.order_item_id = B.order_item_id
+                    AND
+                        B.meta_key = '_product_id'
+            INNER JOIN
+                {$wpdb->prefix}posts AS C
+                    ON
+                        C.ID = B.meta_value
+                    AND
+                        C.post_status = 'publish'
+            INNER JOIN
+                {$wpdb->prefix}wc_orders AS D
+                    ON
+                        A.order_id = D.id
+            LEFT JOIN
+                {$wpdb->prefix}postmeta AS F
+                    ON 
+                        F.post_id = D.ID
+                    AND
+                        F.meta_key = '_customer_user'
+            INNER JOIN
+                {$wpdb->prefix}postmeta AS J
                 ON
-                    A.order_item_id = B.order_item_id
+                    J.post_id = C.ID
                 AND
-                    B.meta_key = '_product_id'
-        INNER JOIN
-            {$wpdb->prefix}posts AS C
-                ON
-                    C.ID = B.meta_value
-                AND
-                    C.post_status = 'publish'
-        INNER JOIN
-            {$wpdb->prefix}posts AS D
-                ON
-                    A.order_id = D.ID
-                AND
-                    D.post_type = 'shop_order'
-        LEFT JOIN
-            {$wpdb->prefix}postmeta AS F
-                ON 
-                    F.post_id = D.ID
-                AND
-                    F.meta_key = '_customer_user'
-        INNER JOIN
-            {$wpdb->prefix}postmeta AS J
-            ON
-                J.post_id = C.ID
-            AND
-                J.meta_key = '_stock_status'
-        WHERE
-            A.order_item_type = 'line_item'
-    ";
+                    J.meta_key = '_stock_status'
+            WHERE
+                A.order_item_type = 'line_item'
+        ";
 
-    if( woomotiv()->config->woomotiv_display_processing_orders == 1 ){
-        $raw .= " AND D.post_status IN ('wc-completed','wc-processing')";
-    }
-    else{
-        $raw .= " AND D.post_status = 'wc-completed'";
-    }
+        if (woomotiv()->config->woomotiv_display_processing_orders == 1) {
+            $raw .= " AND D.status IN ('wc-completed','wc-processing')";
+        } else {
+            $raw .= " AND D.status = 'wc-completed'";
+        }
 
-    // Make sure it is a parent order
-    $raw .= " AND D.post_parent = 0";
+        // Make sure it is a parent order
+        $raw .= " AND D.parent_order_id = 0";
 
-    // Is out of stock enabled?
-    if( ! $is_outofstock_visible ){
-        $raw .= " AND J.meta_value != 'outofstock'";
-    }
+        // Is out of stock enabled?
+        if( ! $is_outofstock_visible ){
+            $raw .= " AND J.meta_value != 'outofstock'";
+        }
 
-    // Excluded order items ( No-repeat functionality)
-    if( count($excluded_order_items) ){
-        $excluded_order_items_str = implode(',', $excluded_order_items);
-        $raw .= " AND A.order_item_id NOT IN ({$excluded_order_items_str})";        
-    }
+        // Excluded order items ( No-repeat functionality)
+        if( count($excluded_order_items) ){
+            $excluded_order_items_str = implode(',', $excluded_order_items);
+            $raw .= " AND A.order_item_id NOT IN ({$excluded_order_items_str})";
+        }
 
-    // Excluded products
-    if( isset($excluded_products) && count($excluded_products) ){
-        $excluded_products_str = implode(',', $excluded_products);
-        $raw .= " AND C.ID NOT IN ({$excluded_products_str})";
-    }
+        // Excluded products
+        if( isset($excluded_products) && count($excluded_products) ){
+            $excluded_products_str = implode(',', $excluded_products);
+            $raw .= " AND C.ID NOT IN ({$excluded_products_str})";
+        }
 
-    // exclude current user orders
-    if( is_user_logged_in() ){
-        if( current_user_can('manage_options') ){
-            if( (int)woomotiv()->config->woomotiv_admin_popups == 0 ){
-                $raw .= ' AND F.meta_value != ' . get_current_user_id();                    
+        // exclude current user orders
+        if( is_user_logged_in() ){
+            if( current_user_can('manage_options') ){
+                if( (int)woomotiv()->config->woomotiv_admin_popups == 0 ){
+                    $raw .= ' AND D.customer_id != ' . get_current_user_id();
+                }
             }
-        } 
-        else{
-            if( (int)woomotiv()->config->woomotiv_logged_own_orders == 0 ){
-                $raw .= ' AND F.meta_value != ' . get_current_user_id();
+            else{
+                if( (int)woomotiv()->config->woomotiv_logged_own_orders == 0 ){
+                    $raw .= ' AND D.customer_id != ' . get_current_user_id();
+                }
+            }
+        }
+    } else {
+        $raw = "
+            SELECT 
+                C.ID AS product_id, 
+                A.order_id,
+                A.order_item_id,
+                D.post_status AS order_status,
+                F.meta_value AS customer_id,
+                J.meta_value AS stock_status
+            FROM 
+                {$wpdb->prefix}woocommerce_order_items AS A
+            INNER JOIN
+                {$wpdb->prefix}woocommerce_order_itemmeta AS B
+                    ON
+                        A.order_item_id = B.order_item_id
+                    AND
+                        B.meta_key = '_product_id'
+            INNER JOIN
+                {$wpdb->prefix}posts AS C
+                    ON
+                        C.ID = B.meta_value
+                    AND
+                        C.post_status = 'publish'
+            INNER JOIN
+                {$wpdb->prefix}posts AS D
+                    ON
+                        A.order_id = D.ID
+                    AND
+                        (
+                            D.post_type = 'shop_order'
+                            OR
+                            D.post_type = 'shop_order_placehold'    
+                        )
+            LEFT JOIN
+                {$wpdb->prefix}postmeta AS F
+                    ON 
+                        F.post_id = D.ID
+                    AND
+                        F.meta_key = '_customer_user'
+            INNER JOIN
+                {$wpdb->prefix}postmeta AS J
+                ON
+                    J.post_id = C.ID
+                AND
+                    J.meta_key = '_stock_status'
+            WHERE
+                A.order_item_type = 'line_item'
+        ";
+
+        if (woomotiv()->config->woomotiv_display_processing_orders == 1) {
+            $raw .= " AND D.post_status IN ('wc-completed','wc-processing')";
+        } else {
+            $raw .= " AND D.post_status = 'wc-completed'";
+        }
+
+        // Make sure it is a parent order
+        $raw .= " AND D.post_parent = 0";
+
+        // Is out of stock enabled?
+        if( ! $is_outofstock_visible ){
+            $raw .= " AND J.meta_value != 'outofstock'";
+        }
+
+        // Excluded order items ( No-repeat functionality)
+        if( count($excluded_order_items) ){
+            $excluded_order_items_str = implode(',', $excluded_order_items);
+            $raw .= " AND A.order_item_id NOT IN ({$excluded_order_items_str})";
+        }
+
+        // Excluded products
+        if( isset($excluded_products) && count($excluded_products) ){
+            $excluded_products_str = implode(',', $excluded_products);
+            $raw .= " AND C.ID NOT IN ({$excluded_products_str})";
+        }
+
+        // exclude current user orders
+        if( is_user_logged_in() ){
+            if( current_user_can('manage_options') ){
+                if( (int)woomotiv()->config->woomotiv_admin_popups == 0 ){
+                    $raw .= ' AND F.meta_value != ' . get_current_user_id();
+                }
+            }
+            else{
+                if( (int)woomotiv()->config->woomotiv_logged_own_orders == 0 ){
+                    $raw .= ' AND F.meta_value != ' . get_current_user_id();
+                }
             }
         }
     }
 
     // random or recent sales
     if( $is_random ){
-        $raw .= " ORDER BY RAND()"; 
+        $raw .= " ORDER BY RAND()";
     }
     else{
-        $raw .= " ORDER BY A.order_item_id DESC"; 
+        $raw .= " ORDER BY A.order_item_id DESC";
     }
 
     // limit
     $raw .= " LIMIT " . woomotiv()->config->woomotiv_limit;
-    
+
     $products = array();
 
     foreach ( $wpdb->get_results( $raw ) as $data ) {

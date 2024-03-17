@@ -185,10 +185,9 @@ class Frontend{
         $counter = 1;
         $max = count( $products );
         
-        if( $max < count( $reviews ) ){
+        if ($max < count($reviews)){
             $max = count( $reviews );
-        }
-        elseif( $max < count( $custom_popups ) ){
+        } elseif ($max < count($custom_popups)){
             $max = count( $custom_popups );
         }
 

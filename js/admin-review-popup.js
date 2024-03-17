@@ -23,6 +23,7 @@
 		
 		ajax({
 			action: 'woomotiv_cancel_review',
+			nonce: woomotiv_admin_review_popup.nonce
 		}).done(function( response ){	
 			$('.woomotiv-reviews-popup').fadeOut();
 		});
@@ -38,6 +39,7 @@
 
 		ajax({
 			action: 'woomotiv_cancel_review',
+			nonce: woomotiv_admin_review_popup.nonce
 		}).done(function( response ){	
 			$('.woomotiv-reviews-popup').fadeOut();
 			location.href = url;

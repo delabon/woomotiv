@@ -182,7 +182,6 @@ class Backend{
         $panel->print();
     }
 
-
     /**
      * Checkbox js helper
      */
@@ -203,6 +202,10 @@ class Backend{
             woomotiv()->version, 
             true 
         );
+
+        wp_localize_script( 'woomotiv_admin_review_popup', 'woomotiv_admin_review_popup', array(
+            'nonce' => wp_create_nonce('woomotiv'),
+        ));
 
         if( strpos( $hook, 'woomotiv' ) === false ) return;
 
@@ -493,11 +496,12 @@ class Backend{
      * @return void
      */
     function ajax_cancel_review(){
-        
+
+        validateNounce();
+
         $count = (int)get_option('woomotiv_sales_count_after_install', 0 );
         update_option('woomotiv_cancel_review_count', $count );
 
         die;
     }
-
 }
