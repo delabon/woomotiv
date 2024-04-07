@@ -638,8 +638,11 @@ function get_reviews(){
 
         if( $rating['user_id'] != 0 ){
             $usermeta = get_user_meta( $data->user_id );
-            $rating['user_first_name'] = $usermeta['first_name'][0];
-            $rating['user_last_name'] = $usermeta['last_name'][0];
+
+            if (!empty($usermeta)) {
+                $rating['user_first_name'] = isset($usermeta['first_name'], $usermeta['first_name'][0]) ? $usermeta['first_name'][0] : '';
+                $rating['user_last_name'] = isset($usermeta['last_name'], $usermeta['last_name'][0]) ? $usermeta['last_name'][0] : '';
+            }
         }
         
         $reviews[] = (object)$rating;
