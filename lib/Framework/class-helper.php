@@ -79,18 +79,21 @@ class Helper {
      * @param array|string $list
      * @return bool
      */
-    static function isExcluded( $link, $list ){
+    static function isExcluded( $link, $list, $ignoreQuery = false ){
 
         if( ! is_array( $list ) ){
             $list = excludedListToArray( $list );
         }
     
         $link = preg_replace( '/.*?https?:\/\//', '', $link );
-    
-        foreach( $list as $excluded ){
-    
+
+        if ($ignoreQuery && strpos($link, '?') !== false) {
+            return false;
+        }
+
+        foreach ($list as $excluded) {
             $excluded_link = preg_replace( '/.*?https?:\/\//', '', $excluded );
-    
+
             if( strpos( $excluded_link, '*' ) !== false ){
                 
                 $excluded_parts = explode( '*', $excluded_link );
@@ -98,8 +101,7 @@ class Helper {
                 if( strpos( $link, $excluded_parts[0] ) !== false ){
                     return true;
                 }
-            }
-            else if( $link === $excluded_link ){
+            } elseif( $link === $excluded_link ){
                 return true;
             }
         }

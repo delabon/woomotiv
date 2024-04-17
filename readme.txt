@@ -2,7 +2,7 @@
 Contributors: delabon
 Requires at least: 4.6
 Tested up to: 6.4.3
-Stable tag: 3.5.1
+Stable tag: 3.6.0
 Requires PHP: 5.6
 Tags: woocommerce notification, woocommerce sales notification, woocommerce sales popup, marketing, boost sales, boost conversion
 License: GPLv2 or later
@@ -95,6 +95,10 @@ Absolutely Yes! you can use it on your client sites.
 2. This is the second screen shot
 
 == Changelog ==
+
+= 3.6.0 =
+
+* Add "Keep On URLs With Query" filter
 
 = 3.5.1 =
 

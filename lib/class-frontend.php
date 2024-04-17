@@ -87,22 +87,21 @@ class Frontend{
             else{
                 return;
             }
-
         }
         
         // fitlers
-        $excluded = Helper::excludedListToArray( woomotiv()->config->woomotiv_filter_pages );
+        $excluded = Helper::excludedListToArray(woomotiv()->config->woomotiv_filter_pages);
+        $isUrlQueryIgnored = (bool)(int)woomotiv()->config->woomotiv_filter_keep_query_pages;
 
         if( woomotiv()->config->woomotiv_filter === 'show' ){
             if( ! empty( $excluded ) ){
-                if( Helper::isExcluded( woomotiv()->request->url(), $excluded ) ){
+                if( Helper::isExcluded( woomotiv()->request->url(), $excluded, $isUrlQueryIgnored) ){
                     return true;
                 }
             }
-        }
-        // hide on all except
-        else{
-            if( ! empty( $excluded ) ){ 
+        } else {
+            // hide on all except
+            if( ! empty( $excluded ) ){
                 if( ! Helper::isExcluded( woomotiv()->request->url(), $excluded ) ){
                     return true;
                 }

@@ -44,6 +44,14 @@ HTML::select(array(
     'placeholder' => 'http://mysite.com, http://mysite.com/product/hoodie-with-zipper/',
 ))
 
+.HTML::checkbox(array(
+    'title' => __('Keep on URLs with query', 'woomotiv'),
+    'description' => __( "Allow popups on URLs with query http://mysite.com?a=123",'woomotiv'),
+    'name' => 'woomotiv_filter_keep_query_pages',
+    'value' => woomotiv()->config->woomotiv_filter_keep_query_pages,
+    'text' => __('Enable','woomotiv'),
+))
+
 .HTML::checkbox(array( 
     'title' => __('Hide on All Articles', 'woomotiv'),
     'name' => 'woomotiv_filter_posts', 

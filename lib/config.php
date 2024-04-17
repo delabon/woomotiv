@@ -43,6 +43,7 @@ return array(
     // filters
     'woomotiv_filter'               => 'show',
     'woomotiv_filter_pages'         => '',
+    'woomotiv_filter_keep_query_pages' => 0,
     'woomotiv_filter_posts'         => 0,
     'woomotiv_woocategories'        => '',
     'woomotiv_filter_products'      => '0',
