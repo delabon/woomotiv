@@ -1,8 +1,8 @@
 === Live Sales Notification for Woocommerce - Woomotiv ===
 Contributors: delabon
 Requires at least: 4.6
-Tested up to: 6.4.3
-Stable tag: 3.6.0
+Tested up to: 6.6.2
+Stable tag: 3.6.1
 Requires PHP: 5.6
 Tags: woocommerce notification, woocommerce sales notification, woocommerce sales popup, marketing, boost sales, boost conversion
 License: GPLv2 or later
