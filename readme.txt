@@ -15,79 +15,58 @@ A Woocommerce notification plugin that pushes recent sales popups to future cust
 
 [See Live Demo](https://delabon.com/demo/woomotiv/ "See Live Demo")
 
-**Premium features are free! Download now!**
+**Get premium features free—download Woomotiv now!**
 
-Woomotiv is a live sales notification for Woocommerce plugin. It shows proof to future customers that your site is busy and trustworthy to buy from.
+**Woomotiv** is a powerful live sales notification plugin for WooCommerce, designed to increase conversions by building trust and creating urgency. Show your visitors that real customers are buying from you, making your site more reliable and encouraging purchases.
 
-If you run a Woocommerce store, chances are pretty high that you would like to convert more of your visitors into buyers.
+If you're running a WooCommerce store, **Woomotiv** is here to help turn more visitors into buyers. Studies show that **nearly 97%** of visitors leave without making a purchase, often due to a lack of trust. Woomotiv's notifications tap into social proof, helping you build credibility and drive conversions.
 
-**Almost 97%~ of visitors**, stop by, they click around and they leave without buying a product or a service. All online stores face this particular problem. **Which, is the lack of TRUST.**
+> “The tendency to see an action as more appropriate when others are doing it.”
+**– Dr. Robert Cialdini**
 
-Luckily, this is something that can be improved a lot with the use of **Woocommerce Notification**.
+### Benefits of WooCommerce Sales Notifications
+- Boosts trust and credibility for your store.
+- Shows your WooCommerce site is active and popular.
+- Creates urgency with real-time notifications.
+- Highlights trending products, making them more appealing.
+- Increases your conversion rate—essential for business success.
 
-> The tendency to see an action as more appropriate when others are doing it. 
-**Dr.Robert Cialdini**
-
-## Benefits of Sales Notification for Woocommerce
-* Makes your online store trustworthy.
-* Shows that your Woocommerce site is popular and busy.
-* Creates a sense of urgency.
-* Shows trending products.
-* Boosts your conversion rate (Which, is the most important thing in business).
-
-## Top Featuress
-* Absolutely no configuration needed! (No need to connect your Woocommerce store with a backend platform like other plugins require)
-* Recent / Random Sales notifications.
-* Display reviews notifications
-* Custom notifications
-* Display Customer Avatar ( if not available, it will show the product image ).
-* Display Product Featured image.
-* Report
-* Responsive: Works beautifully on all kind of devices.
-* Shows still processing orders notifications
-* Speed: It Uses Ajax technology. 
-* Live customization.
-* Change Popup Size.
-* Multiple Positions.
-* Multiple Shapes.
-* Multiple Animations.
-* Unlimited Colors.
-* Preview Style Changes.
-* Customize the popup text.
-* Campaign Tracking.
-* Filters.
-* Easy to use.
-* Fast and lightweight. 
-* No limit.
-* And more
+### Top Features of Woomotiv
+- **Zero Configuration Needed** – Start displaying sales notifications without connecting to external platforms.
+- **Customizable Notifications** – Choose recent, random, or custom sales notifications.
+- **Display Customer Avatars or Product Images** – Use customer avatars or featured product images in popups.
+- **Responsive Design** – Looks great on mobile, tablet, and desktop devices.
+- **Real-Time Customization** – Adjust popup size, colors, and text live.
+- **Various Animations, Shapes, & Positions** – Fully customizable to match your brand’s look and feel.
+- **Unlimited Colors & Preview Style Changes** – Make instant style changes and see them live.
+- **Ajax-Powered for Fast Performance** – Lightweight and optimized for speed.
+- **Comprehensive Reporting** – Track campaign performance with ease.
+- **Still Processing Orders Notifications** – Boosts visibility of in-progress sales.
+- **No Limits on Use** – Set up as many notifications as you need.
+- **And Much More!**
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
+Follow these simple steps to install and activate Woomotiv:
 
-1. Install from the WordPress Dashboard > Plugin page.
-Or manually download the plugin and extract to wp-content/plugins/.
+1. Install directly from **WordPress Dashboard > Plugins**, or manually upload to `wp-content/plugins/`.
 2. Activate the plugin.
-3. If you want to change the settings go to Dashboard > Woomotiv.
-4. Done
+3. Configure settings (if desired) under **Dashboard > Woomotiv**.
+4. You're all set!
 
 == Frequently Asked Questions ==
 
-= Do I need to edit my WooCommerce theme? =
+**Do I need to edit my WooCommerce theme?**
+No, Woomotiv works seamlessly with any WordPress/WooCommerce theme. Simply install and activate—no extra setup required.
 
-No, Woomotiv works out of the box with any WordPress / WooCommerce themes. You just need to install the plugin and it will take care of the rest.
+**Where can I find the documentation?**
+Access our detailed documentation [here](https://delabon.com/documentation/24/index.html).
 
-= Where can I find the documentation? =
+**Can I get support?**
+Yes, submit a support ticket anytime [here](https://delabon.com/support).
 
-You can read the documentation on our website from here:  https://delabon.com/documentation/24/index.html.
-
-= Can I get support? =
-
-Yes, just submit a support ticket from here: https://delabon.com/support
-
-= Can I use Woomotiv for my client sites? =
-
-Absolutely Yes! you can use it on your client sites.
+**Can I use Woomotiv on client sites?**
+Absolutely! Woomotiv is client-ready and fully compatible with multiple sites.
 
 == Screenshots ==
 
