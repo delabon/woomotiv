@@ -12,7 +12,7 @@ Boost trust, traffic, and sales with Woomotiv—a WooCommerce notification plugi
 
 == Description ==
 
-[See Live Demo](https://delabon.com/demo/woomotiv/ "See Live Demo")
+[youtube https://www.youtube.com/watch?v=JUQfPCiBYhA]
 
 **Get premium features free—download Woomotiv now!**
 
