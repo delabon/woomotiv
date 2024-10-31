@@ -8,8 +8,7 @@ Tags: woocommerce notification, woocommerce sales notification, woocommerce sale
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Leverage social proof to increase trust, traffic and sales. 
-A Woocommerce notification plugin that pushes recent sales popups to future customers.
+Boost trust, traffic, and sales with Woomotiv—a WooCommerce notification plugin that displays recent sales popups, leveraging social proof to engage and convert visitors into customers.
 
 == Description ==
 
