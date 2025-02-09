@@ -1,9 +1,9 @@
 <?php 
 
-namespace WooMotiv;
+namespace Woomotiv;
 
-use WooMotiv\Framework\Alert;
-use WooMotiv\Framework\Panel;
+use Woomotiv\Framework\Alert;
+use Woomotiv\Framework\Panel;
 
 class Backend{
 
@@ -55,7 +55,7 @@ class Backend{
                         <p>
                             <strong>Each site has its Woomotiv settings page. And Woomotiv will display sales notification by site.</strong>
                             <br>
-                            <a href="<?php echo admin_url('admin.php?page=woomotiv') ?>">Main site settings page.</a>
+                            <a href="<?php echo esc_url(admin_url('admin.php?page=woomotiv')) ?>">Main site settings page.</a>
                         </p>
                     </div>
                 <?php 
@@ -71,7 +71,7 @@ class Backend{
 
         if( ! woomotiv()->request->post('woomotiv_nonce') ) return;
 
-        echo Alert::success( __('Options Saved Successfuly','woomotiv') );
+        echo Alert::success(__('Options Saved Successfuly','woomotiv') ); // phpcs:ignore
     }
 
     /**
@@ -278,29 +278,22 @@ class Backend{
             $style = require ( woomotiv()->dir . '/views/custom-css.php' );
             $link = "https://delabon.com/store/sales-notification-for-woocommerce";
 
-            echo '<style>' . $style . '</style>
-
+            // phpcs:disable
+            echo '<style>' . esc_html($style) . '</style>
                 <div data-size="'.woomotiv()->config->woomotiv_style_size.'" data-shape="'.woomotiv()->config->woomotiv_shape.'" data-position="'.woomotiv()->config->woomotiv_position.'" data-animation="'.woomotiv()->config->woomotiv_animation.'" class="woomotiv-popup wmt-index-0 wmt-current" data-index="0">
-
                     <div class="woomotiv-image">
                         <img src="'.woomotiv()->url.'/img/150.png">
                     </div>
-
                     <p>
                         <strong class="wmt-buyer">John D</strong> . recently purchased <br>
                         <strong class="wmt-product">Hoodie With Logo</strong> <br>
                         <span class="wmt-by">By <span>Woomotiv</span></span>
-
-                        <a class="woomotiv-link" href="https://delabon.com/store/sales-notification-for-woocommerce"></a>
-                        
+                        <a class="woomotiv-link" href="' . $link . '"></a>
                         <span class="woomotiv-close" style="display:inline-block;">&times;</span>
                     </p>
-
                 </div>
-            ';
-
+            '; // phpcs:enable
         }
-
     }
 
     /**
@@ -325,7 +318,7 @@ class Backend{
 
         if( $id ){
 
-            $result = $wpdb->get_row( "SELECT * FROM {$table} WHERE id = " . $id );     
+            $result = $wpdb->get_row($wpdb->prepare("SELECT * FROM {$table} WHERE id = %d", $id));
 
             if( $result ){
 
@@ -475,12 +468,12 @@ class Backend{
             <div class="woomotiv-reviews-popup">
                 <div class="woomotiv-reviews-popup-content">
 
-                    <img src="<?php echo WOOMOTIV_URL . '/img/trophy.png'; ?>" alt="Congrat" >
+                    <img src="<?php echo esc_url(WOOMOTIV_URL . '/img/trophy.png'); ?>" alt="Congrat">
                     
                     <h1>Congratulations!</h1>
-                    <p>You have got <strong><?php echo $count ?> SALES</strong> since installing <strong>Woomotiv</strong>!</p>
+                    <p>You have got <strong><?php echo esc_html($count) ?> SALES</strong> since installing <strong>Woomotiv</strong>!</p>
                     <p>Help Woomotiv by giving it 5 stars review!</p>
-                    <a href="<?php echo WOOMOTIV_REVIEW_URL; ?>" target="_blank" class="__go_review">Yes, I Will Help Now!</a>
+                    <a href="<?php echo esc_url(WOOMOTIV_REVIEW_URL); ?>" target="_blank" class="__go_review">Yes, I Will Help Now!</a>
                     <br>
                     <a href="#" class="__cancel_review">
                         No, I don't want to help.

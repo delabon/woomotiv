@@ -1,9 +1,9 @@
 === Live Sales Notification for Woocommerce - Woomotiv ===
 Contributors: delabon
 Requires at least: 5.0
-Tested up to: 6.6
-Stable tag: 3.6.1
-Requires PHP: 5.6
+Tested up to: 6.7
+Stable tag: 3.6.3
+Requires PHP: 8.0
 Tags: woocommerce notification, woocommerce sales notification, woocommerce sales popup, marketing, boost sales, boost conversion
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -73,6 +73,12 @@ Absolutely! Woomotiv is client-ready and fully compatible with multiple sites.
 2. This is the second screen shot
 
 == Changelog ==
+
+= 3.6.3 =
+
+* Fix vulnerabilities reported by Wordfence
+* WordPress 6.7 support
+* WooCommerce 9.6 support
 
 = 3.6.1 =
 

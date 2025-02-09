@@ -1,8 +1,8 @@
 <?php 
 
-use WooMotiv\Framework\HTML;
-use function WooMotiv\convert_timezone;
-use function WooMotiv\upgrade_notice;
+use Woomotiv\Framework\HTML;
+use function Woomotiv\convert_timezone;
+use function Woomotiv\upgrade_notice;
 
 global $wpdb;
 

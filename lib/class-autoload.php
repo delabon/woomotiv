@@ -1,6 +1,6 @@
 <?php 
 
-namespace WooMotiv;
+namespace Woomotiv;
 
 class Autoload{
         
@@ -11,12 +11,12 @@ class Autoload{
 
         spl_autoload_register( function( $className ){
 
-            if( strpos( $className, 'WooMotiv' ) === false ) return;
+            if( strpos( $className, 'Woomotiv' ) === false ) return;
 
             preg_match('/.*\\\(.*)$/', $className, $match);
             $filename = $match[1];
             
-            $className = str_replace( 'WooMotiv', '', $className );
+            $className = str_replace( 'Woomotiv', '', $className );
             $className = str_replace( $filename, '', $className );
             $className = str_replace( '\\', '/', $className );                
             $path = __DIR__ . $className . 'class-' . str_replace( '_', '-', strtolower( $filename ) ) . '.php';

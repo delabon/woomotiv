@@ -1,6 +1,6 @@
 <?php 
 
-namespace WooMotiv\Framework;
+namespace Woomotiv\Framework;
 
 class Panel{
 

@@ -2,15 +2,16 @@
 
 /**
  * Plugin Name: Woomotiv - Live Sales Notification for Woocommerce
- * Description: Laverage social proof to increase trust, traffic and sales.
- * Version: 3.6.1
+ * Description: Leverage social proof to increase trust, traffic and sales.
+ * Version: 3.6.3
  * Author: Sabri Taieb
  * Author Uri: https://delabon.com
  * Text Domain: woomotiv
  * Domain Path: /languages
+ * License: GPLv2 or later
  *
  * WC requires at least: 6.5
- * WC tested up to: 9.3
+ * WC tested up to: 9.6
  *
 **/
 
@@ -19,7 +20,7 @@ use Automattic\WooCommerce\Utilities\FeaturesUtil;
 defined( 'ABSPATH' ) or die( 'Mmmmm Funny ?' );
 
 # Defined
-define( 'WOOMOTIV_VERSION', '3.6.1' );
+define( 'WOOMOTIV_VERSION', '3.6.3' );
 define( 'WOOMOTIV_URL', plugins_url( '', __FILE__ ) );
 define( 'WOOMOTIV_DIR', __DIR__ );
 define( 'WOOMOTIV_REVIEW_URL', 'https://wordpress.org/support/plugin/woomotiv/reviews/?rate=5#rate-response');
@@ -90,10 +91,10 @@ class Woomotiv {
         require_once __DIR__ . '/lib/hooks.php';
         $defaultConfig = require_once __DIR__ . '/lib/config.php';
     
-        $this->config = new WooMotiv\Framework\Config( $defaultConfig );
-        $this->request = new WooMotiv\Framework\Request();
-        new WooMotiv\Backend;
-        new WooMotiv\Frontend;
+        $this->config = new Woomotiv\Framework\Config( $defaultConfig );
+        $this->request = new Woomotiv\Framework\Request();
+        new Woomotiv\Backend;
+        new Woomotiv\Frontend;
     }
 
     /**

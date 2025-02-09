@@ -1,6 +1,6 @@
 <?php 
 
-namespace WooMotiv;
+namespace Woomotiv;
 
 use DLBV2\Helper;
 

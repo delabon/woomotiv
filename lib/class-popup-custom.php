@@ -1,6 +1,6 @@
 <?php 
 
-namespace WooMotiv;
+namespace Woomotiv;
 
 class Popup_Custom{
 

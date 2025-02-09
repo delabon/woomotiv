@@ -1,6 +1,6 @@
 <?php 
 
-namespace WooMotiv;
+namespace Woomotiv;
 
 class Popup{
 
@@ -80,7 +80,7 @@ class Popup{
 			$this->data['user'] = array(
 				'id' => 0,
 				'username' => $this->order->get_billing_first_name(),
-				'first_name' => $this->order->get_billing_first_name(),
+				'first_name' =>  $this->order->get_billing_first_name(),
 				'last_name' => $this->order->get_billing_last_name(),
 				'avatar_img' => $this->data['product']['thumbnail_img'],
             );
@@ -93,7 +93,7 @@ class Popup{
 				'username' => $customer->display_name,
 				'first_name' => $this->order->get_billing_first_name(),
 				'last_name' => $this->order->get_billing_last_name(),
-				'avatar_img' => mod_avatar( $this->order->get_customer_id(), $this->data['product']['thumbnail_src'][0], $customer->display_name ),
+				'avatar_img' => mod_avatar( $this->order->get_customer_id(), $this->data['product']['thumbnail_src'][0] ),
 			);
 		}
 

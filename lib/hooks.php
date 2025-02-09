@@ -7,7 +7,7 @@ add_action( 'admin_notices', function () {
     if( ! class_exists('Woocommerce') ) {
         ?>
             <div class="notice notice-error">
-                <p><?php _e( 'Woomotiv requires Woocommerce.', 'woomotiv' ); ?></p>
+                <p><?php esc_html_e('Woomotiv requires Woocommerce.', 'woomotiv' ); ?></p>
             </div>
         <?php
     }
@@ -43,5 +43,5 @@ add_filter( 'get_avatar_url', function( $url, $id_or_email, $args ){
  */
 add_action( 'plugins_loaded', function() {
     // wp-content/plugins/plugin-name/languages/textdomain-de_DE.mo
-	load_plugin_textdomain( 'woomotiv', FALSE,  'woomotiv/languages/' );
+	load_plugin_textdomain( 'woomotiv', plugin_rel_path: 'woomotiv/languages/' );
 });

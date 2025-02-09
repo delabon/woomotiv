@@ -1,6 +1,6 @@
 <?php 
 
-use WooMotiv\Framework\HTML;
+use Woomotiv\Framework\HTML;
 
 return 
 
